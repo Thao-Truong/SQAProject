@@ -1,1 +1,25 @@
-//Input File
+login
+// what kind of session
+admin
+// Read in bank account files
+deposit
+// account holder's name?
+John Doe           
+// acount number?
+12345
+// amount to deposit
+00010.00
+// save this info to the bak account holder
+// Amount deposited successfully
+// Request next transaction
+disable
+// bank account holders name
+John Doe           
+// account number
+12345
+// change from active(A) to disabled(D)
+// Account disabled - Save information
+logout
+//Write tranaction File
+
+08_JohnDoe_12345_00000000_SP
