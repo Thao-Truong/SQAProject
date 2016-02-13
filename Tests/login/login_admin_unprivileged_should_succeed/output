@@ -3,7 +3,6 @@ Enter login:
 Kind of session:
 
 Login Successful.
-
 Enter transaction:
 
 Enter account holder's name:
@@ -11,4 +10,6 @@ Enter account holder's name:
 Enter amount to deposit:
 
 Deposit Successful.
+Enter transaction:
 
+Logout Successful.
