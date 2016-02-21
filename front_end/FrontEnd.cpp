@@ -4,6 +4,7 @@
 #include <cstdlib>
 #include "loginTransaction.cpp"
 #include "withdrawalTransaction.cpp"
+#include "depositTransaction.cpp"
 #include "transaction_file.cpp"
 #include "Users.cpp"
 
@@ -12,9 +13,9 @@ using namespace std;
 class FrontEnd {
   public:
     void getTransactions() {
-      bool flag = false;
-      bool previous = false;
-      string input;
+      bool flag = false;      //flag to check that no transaction occurs before login
+      bool previous = false;  //flag to check that no subsequent login should be accepted after a login, until after a logout
+      string input;          //input line
       Users user;      //current logged-in user's info
       loginTransaction lt;
 
@@ -36,23 +37,31 @@ class FrontEnd {
           lt.writeTransaction();
           cout << "CURRENT USER IS:  " << user.getAccountName() << endl;
           cout << "CURRENT BALANCE IS: " << user.getBalance() << endl;     
-          //string code, string name, string number, string balance, string misc
+          string code, string name, string number, string balance, string misc
           TransactionFile::WriteTransaction("code", "name", "number", "balance", "misc");
           TransactionFile::WriteTransaction("code1", "name1", "number1", "balance1", "misc1");
           TransactionFile::WriteTransaction("code2", "name2", "number2", "balance2", "misc2");
 
         } else if (input.compare("withdrawal") == 0 && flag == true) {
            withdrawalTransaction wt;
-           if (wt.process(user) == -1) {
+           Users* allUsers = lt.getUsers();
+
+           if (wt.process(user, allUsers) == -1) {
               cout << "Transaction invalid." << endl;
               continue;
            }
            wt.writeTransaction();
         } else if (input.compare("deposit") == 0 && flag == true) {
-               cout << "Enter account number:\n";
-               cin >> input;
-               cout << "Enter Amount: \n";
-               cin >> input;               
+           depositTransaction dt;
+           Users* allUsers = lt.getUsers();
+           if (dt.process(user, allUsers) == -1) {
+               cout << "Transaction invalid." << endl;
+               continue;
+           } 
+
+
+
+   
         } else if (input.compare("transfer") == 0 && flag == true) {
           Users* allUsers = lt.getUsers();
 

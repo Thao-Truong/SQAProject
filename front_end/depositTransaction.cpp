@@ -8,7 +8,7 @@
 using namespace std;
 
 
-class withdrawalTransaction {
+class depositTransaction {
    private:
       string name, accountNumber, amount;
 
@@ -32,7 +32,7 @@ class withdrawalTransaction {
           if (user.getAccountName() != "" && accountNumber != user.getAccountNumber()) {
              return -1;
           }
-          cout << "Amount to withdraw:" << endl;
+          cout << "Amount to Deposit:" << endl;
           cin >> amount;
      
                    
@@ -50,22 +50,13 @@ class withdrawalTransaction {
           else {
              fee = 0;
           }
-          total = atof(amount.c_str()) + fee;
-         
-          if (user.getAccountName() != "" && total > 499.999) {
-             return -1;
-          }
+          total = atof(amount.c_str()) - fee;
           
-          if (user.getAccountName() != "" && (atof(user.getBalance().c_str()) - total) < 0.001) {
-             return -1;
-          }
-          if (user.getAccountName() == "" && (atof(balance.c_str()) - total) < 0.001) {
-             return -1;
-          }   
+         
             
        } 
 
        void writeTransaction() {
-           printf("01 %-20s %s %s\n", name.c_str(), accountNumber.c_str(), amount.c_str());
+           printf("04 %-20s %s %s\n", name.c_str(), accountNumber.c_str(), amount.c_str());
        } 
 };
