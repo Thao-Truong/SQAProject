@@ -53,6 +53,7 @@ class loginTransaction {
                  }
                 else {
                    setKind("A");
+                   setAmount("00000.00");
                 }
                 
                 

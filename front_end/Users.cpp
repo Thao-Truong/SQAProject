@@ -1,6 +1,7 @@
 #include <iostream>
 #include <string>
-
+#ifndef USERS_H
+#define USERS_H
 using namespace std;
 
 class Users {
@@ -40,3 +41,4 @@ class Users {
       }
 
  };
+#endif

@@ -3,6 +3,7 @@
 #include <string.h>
 #include <cstdlib>
 #include "loginTransaction.cpp"
+#include "withdrawalTransaction.cpp"
 
 using namespace std;
 
@@ -24,7 +25,7 @@ class FrontEnd {
                 loginTransaction lt;
                 lt.login();
                 user = lt.readAccounts(lt.getName());
-                if (user.getAccountName() == "") {
+                if (user.getAccountName() == "" && lt.getKind() != "A") {
                    cout << "Transaction invalid" << endl;
                    flag = false;
                    previous = false;
@@ -35,13 +36,23 @@ class FrontEnd {
                 cout << "CURRENT BALANCE IS: " << user.getBalance() << endl;
                  
               }
+               else if (input.compare("withdrawal") == 0 && flag == true) {
+                 withdrawalTransaction wt;
+                 if (wt.process(user) == -1) {
+                    cout << "Transaction invalid." << endl;
+                    continue;
+                 }
+                 wt.writeTransaction();
+                }
+
              else if (input.compare("deposit") == 0 && flag == true) {
                  cout << "Enter account number:\n";
                  cin >> input;
                  cout << "Enter Amount: \n";
                  cin >> input;
                  
-               } 
+               }
+            
                else {
                   cout << "Transaction invalid.\n";
                }
