@@ -10,7 +10,12 @@ class loginTransaction {
    private:
       string amount;
       string name, kind;
+      Users users[10];
    public:
+      Users* getUsers() {
+         return users;
+      }
+
       string getName() {
          return name;
       }
@@ -64,7 +69,7 @@ class loginTransaction {
           }
          
          Users readAccounts(string name) {
-             Users users[10];
+  
              int i = 0;
              string first, last, acctNo, status, balance, plan;
              ifstream infile;
