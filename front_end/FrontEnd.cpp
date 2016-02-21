@@ -14,7 +14,7 @@ class FrontEnd {
           bool flag = false;
           bool previous = false;
           string input;
-          Users user;
+          Users user;      //current logged-in user's info
           while (1) {
              cout << "Enter a transaction:\n";
              cin >> input;
@@ -23,8 +23,14 @@ class FrontEnd {
                 previous = true;
                 loginTransaction lt;
                 lt.login();
-                lt.writeTransaction();
                 user = lt.readAccounts(lt.getName());
+                if (user.getAccountName() == "") {
+                   cout << "Transaction invalid" << endl;
+                   flag = false;
+                   previous = false;
+                   continue;
+                 }  
+                lt.writeTransaction();
                 cout << "CURRENT USER IS:  " << user.getAccountName() << endl;
                 cout << "CURRENT BALANCE IS: " << user.getBalance() << endl;
                  

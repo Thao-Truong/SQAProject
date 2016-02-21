@@ -78,6 +78,7 @@ class loginTransaction {
                 if (users[i].getAccountName().compare(name) == 0) {
                    return users[i];
                 }
+                
           
                 if (users[i].getAccountNumber().compare("00000") == 0) {
                    users[i].setAccountName("");
@@ -85,7 +86,7 @@ class loginTransaction {
                    users[i].setStatus("");
                    users[i].setBalance("");
                    users[i].setPlanType("");
-                   break;
+                   return users[i];
                 }
                 i += 1;
                 
