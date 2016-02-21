@@ -5,7 +5,7 @@
 #include "loginTransaction.cpp"
 #include "withdrawalTransaction.cpp"
 #include "depositTransaction.cpp"
-#include "transaction_file.cpp"
+//#include "transaction_file.cpp"
 #include "Users.cpp"
 
 using namespace std;
@@ -37,11 +37,6 @@ class FrontEnd {
           lt.writeTransaction();
           cout << "CURRENT USER IS:  " << user.getAccountName() << endl;
           cout << "CURRENT BALANCE IS: " << user.getBalance() << endl;     
-          string code, string name, string number, string balance, string misc
-          TransactionFile::WriteTransaction("code", "name", "number", "balance", "misc");
-          TransactionFile::WriteTransaction("code1", "name1", "number1", "balance1", "misc1");
-          TransactionFile::WriteTransaction("code2", "name2", "number2", "balance2", "misc2");
-
         } else if (input.compare("withdrawal") == 0 && flag == true) {
            withdrawalTransaction wt;
            Users* allUsers = lt.getUsers();

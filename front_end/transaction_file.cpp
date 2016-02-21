@@ -3,38 +3,32 @@
 #include <fstream>
 #include <vector>
 #include "Users.cpp"
+#include <stdlib.h>
+#include <sstream>
+#include <iomanip>
 
 using namespace std;
-/*
-
-10                            00000.00 A 
-01 Cindy Rosen          00040 00495.00   
-00                            00000.00   
-
-
-*/
-
 class TransactionFile {
   private:
   public:     
-    static void WriteTransaction(string code, string name, string number, string balance, string misc) {
+    static void WriteTransaction(string trans, string name, string number, string balance, string misc) {
       string transaction = "";
 
       // format transaction code
 
-      //transaction += FormatTransactionCode(code);
+      transaction += FormatTransactionCode(trans);
 
       //format account holder's name
-      transaction += name;
+      transaction += FormatAccountName(name);
 
       // format account number
-      transaction += number;
+      transaction += FormatAccountNumber(number);
 
       // format balance
-      transaction += balance;
+      transaction += FormatBalance(balance);
 
       // format miscallaneous
-      transaction += misc;
+      transaction += FormatMiscellaneous(misc);
 
       // Write transactions to file
       ofstream write_transaction;
@@ -45,51 +39,85 @@ class TransactionFile {
       return;
     }
 
-    // void FormatTransactionCode() {
-    //   if (!action.compare("end of session")) {
-    //     return "00";
-    //   } else if (!action.compare("withdrawal")) {
-    //     return "01";
-    //   } else if (!action.compare("transfer")) {
-    //     return "02";
-    //   } else if (!action.compare("paybill")) {
-    //     return "03";
-    //   } else if (!action.compare("deposit")) {
-    //     return "04";
-    //   } else if (!action.compare("create")) {
-    //     return "05";
-    //   } else if (!action.compare("delete")) {
-    //     return "06";
-    //   } else if (!action.compare("disable")) {
-    //     return "07";
-    //   } else if (!action.compare("changeplan")) {
-    //     return "08";
-    //   } else if (!action.compare("create")) {
-    //     return "09";
-    //   } else if (!action.compare("create")) {
-    //     return "10";
-    //   } else {
-
-    //     cerr << "ERROR: Invalid action name. Please refer to the project decription for action names.\n";
-    //     return "INVALID";
-    //   }
-    // }
-
+    static string FormatTransactionCode(string transaction) {
+      if (!transaction.compare("end of session")) {
+        return "00 ";
+      } else if (transaction.compare("withdrawal")) {
+        return "01 ";
+      } else if (transaction.compare("transfer")) {
+        return "02 ";
+      } else if (transaction.compare("paybill")) {
+        return "03 ";
+      } else if (transaction.compare("deposit")) {
+        return "04 ";
+      } else if (transaction.compare("create")) {
+        return "05 ";
+      } else if (transaction.compare("delete")) {
+        return "06 ";
+      } else if (transaction.compare("disable")) {
+        return "07 ";
+      } else if (transaction.compare("changeplan")) {
+        return "08 ";
+      } else if (transaction.compare("enable")) {
+        return "09 ";
+      } else if (transaction.compare("login")) {
+        return "10 ";
+      } else {
+        cerr << "Transaction invalid";
+        return "invalid";
+      }
+    }
 
 
-/*
+    static string FormatAccountName(string name) {
+      string final_name = name;;
 
+      for (int i = name.length(); i < 20; i++) {
+        final_name += " ";
+      }
+      // field seperator
+      final_name += " ";
 
-00
--
-end of sessio
-*/
+      return final_name;
+    }
 
+    static string FormatAccountNumber(string number) {
+      string final_number = "";
 
+      for (int i = number.length(); i < 5; i++) {
+        final_number += "0";
+      }
+      final_number += number;
 
+      // field seperator
+      final_number += " ";
+      return final_number; 
+    }
 
+    static string FormatBalance(string balance) {
+      string final_number = "";
+      double num = atof(balance.c_str());
+      //num = std::setprecision(2);
 
+      stringstream stream;
+      stream << fixed << setprecision(2) << num;
+      string bal = stream.str();
 
+      for (int i = bal.length(); i < 8; i++) {
+        final_number += "0";
+      }
 
+      final_number += bal;
+      // field seperator
+      final_number += " ";
+      return final_number;
+    }
 
+    static string FormatMiscellaneous(string misc) {
+      string final_misc = misc;
+      for (int i = misc.length(); i < 2; i++) {
+        final_misc += " ";
+      }
+      return final_misc;
+    }
 };
