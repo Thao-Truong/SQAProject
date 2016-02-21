@@ -62,7 +62,7 @@ class loginTransaction {
              cout << "10" << " " << getName() << "               " << getAmount() << " " << getKind() << endl;
           }
          
-         void readAccounts() {
+         Users readAccounts(string name) {
              Users users[10];
              int i = 0;
              string first, last, acctNo, status, balance, plan;
@@ -75,7 +75,10 @@ class loginTransaction {
                 users[i].setBalance(balance);
                 users[i].setPlanType(plan);
                 users[i].setAccountName(first + " " + last);
-
+                if (users[i].getAccountName().compare(name) == 0) {
+                   return users[i];
+                }
+          
                 if (users[i].getAccountNumber().compare("00000") == 0) {
                    users[i].setAccountName("");
                    users[i].setAccountNumber("");
@@ -85,6 +88,8 @@ class loginTransaction {
                    break;
                 }
                 i += 1;
+                
+
               }
               for (i = 0; i < 10; i++) {
                   cout << users[i].getAccountName() << endl;
