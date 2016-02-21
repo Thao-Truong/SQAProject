@@ -1,39 +1,41 @@
 #include <iostream>
 #include <string>
 
+using namespace std;
+
 class Users {
    private:
-      String accountName, accountNumber, Status, Balance, planType;
+      string accountName, accountNumber, Status, Balance, planType;
    
    public:
-      String getAccountName() {
+      string getAccountName() {
          return accountName;
       }
-      String getAccountNumber() {
+      string getAccountNumber() {
          return accountNumber;
       }
-      String getStatus() {
+      string getStatus() {
          return Status;
       }
-      String getBalance() {
+      string getBalance() {
          return Balance;
       }
-      String getPlanType() {
+      string getPlanType() {
          return planType;
       }
-      void setAccountName(name) {
+      void setAccountName(string name) {
          accountName = name;
       }
-      void setAccountNumber(number) {
+      void setAccountNumber(string number) {
          accountNumber = number;
       }
-      void setStatus(st) {
+      void setStatus(string st) {
          Status = st;
       }
-      void setBalance(bal) {
+      void setBalance(string bal) {
          Balance = bal;
       }
-      void setPlanType(pt) {
+      void setPlanType(string pt) { 
           planType = pt;
       }
 

@@ -22,6 +22,7 @@ class FrontEnd {
                 loginTransaction lt;
                 lt.login();
                 lt.writeTransaction();
+                lt.readAccounts();
                  
               }
               /*else if (input.compare("deposit") == 0 && flag == true) {
