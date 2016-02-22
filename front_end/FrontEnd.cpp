@@ -4,7 +4,7 @@
 #include <cstdlib>
 #include "loginTransaction.cpp"
 #include "withdrawalTransaction.cpp"
-#include "depositTransaction.cpp"
+#include "deposit_transaction.h"
 //#include "transaction_file.cpp"
 #include "Users.cpp"
 
@@ -55,9 +55,13 @@ class FrontEnd {
            }
            wt.writeTransaction();
         } else if (input.compare("deposit") == 0 && flag == true) {
-           depositTransaction dt;
+           DepositTransaction dt;
            Users* allUsers = lt.getUsers();
-           if (dt.process(user, allUsers) == -1) {
+
+           current_transactions.push_back(dt.process(user, allUsers));
+
+
+           if (current_transactions.back().compare("invalid") == 0) {
                cout << "Transaction invalid." << endl;
                continue;
            } 
@@ -98,9 +102,13 @@ class FrontEnd {
         } else if (input.compare("changeplan") == 0 && flag == true) {
 
         } else if (input.compare("logout") == 0 && flag == true) {
+          // logout transaction
           string accountHolder = lt.getName();
           Logout lo;
+
           current_transactions.push_back(lo.logout(accountHolder));
+
+          // output transactionfile
           lo.OutputTransactions(current_transactions);
         } else {
           cout << "Transaction invalid.\n";

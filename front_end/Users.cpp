@@ -9,34 +9,34 @@ class Users {
       string accountName, accountNumber, Status, Balance, planType;
    
    public:
-      string getAccountName() {
+      string GetAccountName() {
          return accountName;
       }
-      string getAccountNumber() {
+      string GetAccountNumber() {
          return accountNumber;
       }
-      string getStatus() {
+      string GetStatus() {
          return Status;
       }
-      string getBalance() {
+      string GetBalance() {
          return Balance;
       }
-      string getPlanType() {
+      string GetPlanType() {
          return planType;
       }
-      void setAccountName(string name) {
+      void SetAccountName(string name) {
          accountName = name;
       }
-      void setAccountNumber(string number) {
+      void SetAccountNumber(string number) {
          accountNumber = number;
       }
-      void setStatus(string st) {
+      void SetStatus(string st) {
          Status = st;
       }
-      void setBalance(string bal) {
+      void SetBalance(string bal) {
          Balance = bal;
       }
-      void setPlanType(string pt) { 
+      void SetPlanType(string pt) { 
           planType = pt;
       }
 

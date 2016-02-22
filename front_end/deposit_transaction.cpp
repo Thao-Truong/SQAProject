@@ -4,12 +4,15 @@
 #include <stdlib.h>
 #include "Users.cpp"
 #include "deposit_transaction.h"
+#include "transaction_file.cpp"
 
 using namespace std;
   
-int DepositTransaction::Process(Users user, Users* all_users) {
+string DepositTransaction::Process(Users user, Users* all_users) {
   double fee, total;
   string balance;    //balance of user for an admin login
+  string transaction_data = "";
+
   if (user.GetAccountName() == "") {     //check for admin login
     cout << "Account holder's name:" << endl;
     cin.ignore();
@@ -24,7 +27,7 @@ int DepositTransaction::Process(Users user, Users* all_users) {
   cout << "Account number:" << endl;
   cin >> account_number;
   if (user.GetAccountName() != "" && account_number != user.GetAccountNumber()) {   //check if account number matches account holder
-    return -1;
+    return "invalid";
   }
   cout << "Amount to Deposit:" << endl;
   cin >> amount;                  
@@ -43,5 +46,7 @@ int DepositTransaction::Process(Users user, Users* all_users) {
   }
   total = atof(amount.c_str()) - fee;     //total amount to deposit
             
-  }        
+  }
+  transaction_data = TransactionFile::WriteTransaction("deposit", name, account_number, amount, ""); 
+  return transaction_data;       
 }

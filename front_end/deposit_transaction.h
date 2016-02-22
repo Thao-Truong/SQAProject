@@ -14,7 +14,7 @@ class DepositTransaction {
       string name, account_number, amount;
 
    public:
-      int process(Users user, Users* all_users);   // process deposit transaction 
+      string Process(Users user, Users* all_users);   // process deposit transaction 
 
 };
         
