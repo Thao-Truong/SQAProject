@@ -7,12 +7,12 @@
 #include "depositTransaction.cpp"
 //#include "transaction_file.cpp"
 #include "Users.cpp"
-<<<<<<< HEAD
-#include "transferTransaction.cpp"
 
-=======
+#include "transferTransaction.cpp"
+#include "paybillTransaction.cpp"
+
 #include "logout.h"
->>>>>>> 0fed5d9a1c2950e26e18a5093e482fcf3ca1bdae
+
 
 using namespace std;
 
@@ -73,6 +73,13 @@ class FrontEnd {
               tt.writeTransaction();
 
         } else if (input.compare("paybill") == 0 && flag == true) {
+             paybillTransaction pt;
+             Users* allUsers = lt.getUsers();
+             if (pt.process(user, allUsers) == -1) {
+               cout << "Transaction invalid." << endl;
+               continue;
+              } 
+              pt.writeTransaction();
 
         } else if (input.compare("create") == 0 && flag == true) { 
 
