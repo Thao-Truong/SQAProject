@@ -1,3 +1,7 @@
+#ifndef WITHDRAWAL_TRANSACTION_H
+#define WITHDRAWAL_TRANSACTION_H
+
+
 #include <string>
 #include "Users.cpp"
 
@@ -13,3 +17,5 @@ class WithdrawalTransaction {
       int  Process(Users user, Users* all_users);   //process a withdrawal transaction
          
 };
+
+#endif
