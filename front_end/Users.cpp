@@ -1,44 +1,38 @@
-#include <iostream>
 #include <string>
-#ifndef USERS_H
-#define USERS_H
+#include "Users.h"
+
 using namespace std;
 
-class Users {
-   private:
-      string accountName, accountNumber, Status, Balance, planType;
-   
-   public:
-      string GetAccountName() {
-         return accountName;
-      }
-      string GetAccountNumber() {
-         return accountNumber;
-      }
-      string GetStatus() {
-         return Status;
-      }
-      string GetBalance() {
-         return Balance;
-      }
-      string GetPlanType() {
-         return planType;
-      }
-      void SetAccountName(string name) {
-         accountName = name;
-      }
-      void SetAccountNumber(string number) {
-         accountNumber = number;
-      }
-      void SetStatus(string st) {
-         Status = st;
-      }
-      void SetBalance(string bal) {
-         Balance = bal;
-      }
-      void SetPlanType(string pt) { 
-          planType = pt;
-      }
+  string Users::GetAccountName() {
+    return account_name;
+  }
+  string Users::GetAccountNumber() {
+    return account_number;
+  }
+  string Users::GetStatus() {
+    return status;
+  }
+  string Users::GetBalance() {
+    return balance;
+  }
+  string Users::GetPlanType() {
+    return planType;
+  }
+  void Users::SetAccountName(string name) {
+    account_name = name;
+  }
+  void Users::SetAccountNumber(string number) {
+    account_number = number;
+  }
+  void Users::SetStatus(string st) {
+    status = st;
+  }
+  void Users::SetBalance(string bal) {
+    balance = bal;
+  }
+  void Users::SetPlanType(string pt) { 
+    planType = pt;
+  }
 
- };
+ 
 #endif
