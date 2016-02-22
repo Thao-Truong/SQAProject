@@ -2,18 +2,17 @@
 #include <string>
 #include <string.h>
 #include <cstdlib>
-#include "loginTransaction.cpp"
-#include "withdrawalTransaction.cpp"
-#include "deposit_transaction.h"
-//#include "transaction_file.cpp"
-#include "Users.cpp"
-
-#include "transferTransaction.cpp"
-#include "paybillTransaction.cpp"
-
-#include "logout.h"
-#include "createTransaction.cpp"
 #include <vector>
+
+#include "create_transaction.h"
+#include "deposit_transaction.h"
+#include "login_transaction.h"
+#include "logout.h"
+#include "paybill_transaction.h"
+//#include "transaction_file.h"
+#include "withdrawal_transaction.h"
+#include "transfer_transaction.h"
+#include "Users.cpp"
 
 using namespace std;
 
@@ -24,7 +23,7 @@ class FrontEnd {
       bool previous = false;  //flag to check that no subsequent login should be accepted after a login, until after a logout
       string input;          //input line
       Users user;      //current logged-in user's info
-      loginTransaction lt;
+      LoginTransaction lt;
       vector<string> current_transactions;
 
       while (1) {
@@ -33,32 +32,31 @@ class FrontEnd {
        if (input.compare("login") == 0 && previous == false) {
           flag = true;
           previous = true;
-          //loginTransaction lt;
-          current_transactions.push_back(lt.login());
-          user = lt.readAccounts(lt.getName());
-          if (user.getAccountName() == "" && lt.getKind() != "A") {
+          current_transactions.push_back(lt.Login());
+          user = lt.readAccounts(lt.GetName());
+          if (user.GetAccountName() == "" && lt.GetKind() != "A") {
             cout << "Transaction invalid" << endl;
             flag = false;
             previous = false;
             continue;
           }  
           lt.writeTransaction();
-          cout << "CURRENT USER IS:  " << user.getAccountName() << endl;
-          cout << "CURRENT BALANCE IS: " << user.getBalance() << endl;     
+          cout << "CURRENT USER IS:  " << user.GetAccountName() << endl;
+          cout << "CURRENT BALANCE IS: " << user.GetBalance() << endl;     
         } else if (input.compare("withdrawal") == 0 && flag == true) {
-           withdrawalTransaction wt;
-           Users* allUsers = lt.getUsers();
+           WithdrawalTransaction wt;
+           Users* all_users = lt.GetUsers();
 
-           if (wt.process(user, allUsers) == -1) {
+           if (wt.Process(user, all_users) == -1) {
               cout << "Transaction invalid." << endl;
               continue;
            }
-           wt.writeTransaction();
+           wt.WriteTransaction();
         } else if (input.compare("deposit") == 0 && flag == true) {
            DepositTransaction dt;
-           Users* allUsers = lt.getUsers();
+           Users* all_users = lt.GetUsers();
 
-           current_transactions.push_back(dt.process(user, allUsers));
+           current_transactions.push_back(dt.process(user, all_users));
 
 
            if (current_transactions.back().compare("invalid") == 0) {
@@ -70,25 +68,25 @@ class FrontEnd {
 
    
         } else if (input.compare("transfer") == 0 && flag == true) {
-             transferTransaction tt;
-             Users* allUsers = lt.getUsers();
-             if (tt.process(user, allUsers) == -1) {
+             TransferTransaction tt;
+             Users* all_users = lt.GetUsers();
+             if (tt.process(user, all_users) == -1) {
                cout << "Transaction invalid." << endl;
                continue;
               } 
-              tt.writeTransaction();
+              tt.WriteTransaction();
 
         } else if (input.compare("paybill") == 0 && flag == true) {
              paybillTransaction pt;
-             Users* allUsers = lt.getUsers();
-             if (pt.process(user, allUsers) == -1) {
+             Users* all_users = lt.GetUsers();
+             if (pt.process(user, all_users) == -1) {
                cout << "Transaction invalid." << endl;
                continue;
               } 
-              pt.writeTransaction();
+              pt.WriteTransaction();
 
         } else if (input.compare("create") == 0 && flag == true) { 
-             createTransaction ct;
+             CreateTransaction ct;
              if  (ct.process(user) == -1) {
                 cout << "Transaction invalid." << endl;
                 continue;
@@ -103,10 +101,10 @@ class FrontEnd {
 
         } else if (input.compare("logout") == 0 && flag == true) {
           // logout transaction
-          string accountHolder = lt.getName();
+          string account_holder = lt.GetName();
           Logout lo;
 
-          current_transactions.push_back(lo.logout(accountHolder));
+          current_transactions.push_back(lo.Logout(account_holder));
 
           // output transactionfile
           lo.OutputTransactions(current_transactions);
