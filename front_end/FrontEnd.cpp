@@ -7,8 +7,12 @@
 #include "depositTransaction.cpp"
 //#include "transaction_file.cpp"
 #include "Users.cpp"
+<<<<<<< HEAD
 #include "transferTransaction.cpp"
 
+=======
+#include "logout.h"
+>>>>>>> 0fed5d9a1c2950e26e18a5093e482fcf3ca1bdae
 
 using namespace std;
 
@@ -79,7 +83,9 @@ class FrontEnd {
         } else if (input.compare("changeplan") == 0 && flag == true) {
 
         } else if (input.compare("logout") == 0 && flag == true) {
-
+          string accountHolder = lt.getName();
+          Logout lo;
+          lo.logout(accountHolder);
         } else {
           cout << "Transaction invalid.\n";
         }
