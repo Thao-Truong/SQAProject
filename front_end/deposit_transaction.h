@@ -1,3 +1,7 @@
+#ifndef DEPOSIT_TRANSACTION_H
+#define DEPOSIT_TRANSACTION_H
+
+
 #include <iostream>
 #include <string>
 #include <stdio.h>
@@ -17,3 +21,4 @@ class DepositTransaction {
 
 };
         
+#endif
