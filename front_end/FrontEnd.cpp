@@ -12,7 +12,8 @@
 #include "paybillTransaction.cpp"
 
 #include "logout.h"
-
+#include "createTransaction.cpp"
+#include <vector>
 
 using namespace std;
 
@@ -24,6 +25,7 @@ class FrontEnd {
       string input;          //input line
       Users user;      //current logged-in user's info
       loginTransaction lt;
+      vector<string> current_transactions;
 
       while (1) {
        cout << "Enter a transaction:\n";
@@ -32,7 +34,7 @@ class FrontEnd {
           flag = true;
           previous = true;
           //loginTransaction lt;
-          lt.login();
+          current_transactions.push_back(lt.login());
           user = lt.readAccounts(lt.getName());
           if (user.getAccountName() == "" && lt.getKind() != "A") {
             cout << "Transaction invalid" << endl;
@@ -87,7 +89,7 @@ class FrontEnd {
                 cout << "Transaction invalid." << endl;
                 continue;
              }
-             ct.writeTransaction(); 
+             //ct.writeTransaction(); 
 
         } else if (input.compare("delete") == 0 && flag == true) {
 
@@ -98,7 +100,8 @@ class FrontEnd {
         } else if (input.compare("logout") == 0 && flag == true) {
           string accountHolder = lt.getName();
           Logout lo;
-          lo.logout(accountHolder);
+          current_transactions.push_back(lo.logout(accountHolder));
+          lo.OutputTransactions(current_transactions);
         } else {
           cout << "Transaction invalid.\n";
         }

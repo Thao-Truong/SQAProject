@@ -6,12 +6,46 @@
 #include <stdlib.h>
 #include <sstream>
 #include <iomanip>
+#include <vector>
+
 
 using namespace std;
 class TransactionFile {
   private:
   public:     
-    static void WriteTransaction(string trans, string name, string number, string balance, string misc) {
+    static void OutputFile(vector<string> current_transactions) {
+      // Write transactions to file
+      ofstream write_transaction;
+      write_transaction.open("transactionfile", ios::app);
+
+
+
+
+
+      for(vector<string>::const_iterator i = current_transactions.begin(); i != current_transactions.end(); ++i) {
+          // process i
+          cout << *i << " "; // this will print all the contents of *features*
+          write_transaction << *i << endl;
+      }
+
+
+
+
+
+
+
+
+
+
+      // for(int i: current_transactions) {
+        
+      //   write_transaction << i << endl;
+        
+      // }
+      write_transaction.close();
+    }
+
+    static string WriteTransaction(string trans, string name, string number, string balance, string misc) {
       string transaction = "";
 
       // format transaction code
@@ -30,13 +64,9 @@ class TransactionFile {
       // format miscallaneous
       transaction += FormatMiscellaneous(misc);
 
-      // Write transactions to file
-      ofstream write_transaction;
-      write_transaction.open("transactionfile", ios::app);
-      write_transaction << transaction << endl;
-      write_transaction.close();
       
-      return;
+      
+      return transaction;
     }
 
     static string FormatTransactionCode(string transaction) {

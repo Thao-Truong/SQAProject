@@ -2,12 +2,14 @@
 #define LOGOUT_H
 
 #include <string>
+#include <vector>
 
 using namespace std;
 
 class Logout{
   public:
-  	void logout(string &user);
+  	string logout(string &user);
+  	void OutputTransactions(vector<string> current_transactions);
   protected:
   private:
 };
