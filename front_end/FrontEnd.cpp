@@ -87,7 +87,7 @@ class FrontEnd {
                 cout << "Transaction invalid." << endl;
                 continue;
              }
-             ct.writeTransaction();
+             ct.writeTransaction(); 
 
         } else if (input.compare("delete") == 0 && flag == true) {
 
