@@ -82,6 +82,12 @@ class FrontEnd {
               pt.writeTransaction();
 
         } else if (input.compare("create") == 0 && flag == true) { 
+             createTransaction ct;
+             if  (ct.process(user) == -1) {
+                cout << "Transaction invalid." << endl;
+                continue;
+             }
+             ct.writeTransaction();
 
         } else if (input.compare("delete") == 0 && flag == true) {
 
