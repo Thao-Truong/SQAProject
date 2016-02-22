@@ -2,6 +2,7 @@
 #include <string>
 #include <fstream>
 #include "Users.cpp"
+#include "transaction_file.cpp"
 
 using namespace std;
 
@@ -66,6 +67,7 @@ class loginTransaction {
 
          void writeTransaction() {
              cout << "10" << " " << getName() << "               " << getAmount() << " " << getKind() << endl;
+             TransactionFile::WriteTransaction("login", getName(), "", getAmount(), getKind());
           }
          
          Users readAccounts(string name) {
