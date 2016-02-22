@@ -41,10 +41,10 @@ class withdrawalTransaction {
              name = user.getAccountName();
           }
 
-          if (user.getStatus() == "S") {
+          if (user.getPlanType() == "S") {
              fee = .05;
           }
-          else if (user.getStatus() == "N") {
+          else if (user.getPlanType() == "N") {
              fee = .10;
           }
           else {

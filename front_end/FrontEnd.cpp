@@ -7,6 +7,8 @@
 #include "depositTransaction.cpp"
 //#include "transaction_file.cpp"
 #include "Users.cpp"
+#include "transferTransaction.cpp"
+
 
 using namespace std;
 
@@ -58,11 +60,14 @@ class FrontEnd {
 
    
         } else if (input.compare("transfer") == 0 && flag == true) {
-          Users* allUsers = lt.getUsers();
+             transferTransaction tt;
+             Users* allUsers = lt.getUsers();
+             if (tt.process(user, allUsers) == -1) {
+               cout << "Transaction invalid." << endl;
+               continue;
+              } 
+              tt.writeTransaction();
 
-          for (int i = 0; i < 10; i++) {
-                  cout << allUsers[i].getAccountName() << endl;
-              }
         } else if (input.compare("paybill") == 0 && flag == true) {
 
         } else if (input.compare("create") == 0 && flag == true) { 
