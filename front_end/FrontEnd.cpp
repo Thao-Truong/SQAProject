@@ -12,7 +12,7 @@
 //#include "transaction_file.h"
 #include "withdrawal_transaction.h"
 #include "transfer_transaction.h"
-#include "Users.cpp"
+#include "users.h"
 
 using namespace std;
 
