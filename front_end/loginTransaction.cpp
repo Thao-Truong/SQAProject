@@ -44,7 +44,9 @@ class loginTransaction {
       }
       
       
-      void login() {
+      string login() {
+        string transaction_data;
+
          string input;
          cout << "Kind of Session:\n";
                 cin >> input;
@@ -61,13 +63,20 @@ class loginTransaction {
                    setKind("A");
                    setAmount("00000.00");
                 }
+                // transaction_data.push_back("login");
+                // transaction_data.push_back(getName());
+                // transaction_data.push_back("");
+                // transaction_data.push_back(getAmount());
+                // transaction_data.push_back(getKind());
                 
-                
+                transaction_data = TransactionFile::WriteTransaction("login", getName(), "", getAmount(), getKind());
+
+                return transaction_data;
          }
 
          void writeTransaction() {
              cout << "10" << " " << getName() << "               " << getAmount() << " " << getKind() << endl;
-             TransactionFile::WriteTransaction("login", getName(), "", getAmount(), getKind());
+             //TransactionFile::WriteTransaction("login", getName(), "", getAmount(), getKind());
           }
          
          Users readAccounts(string name) {
