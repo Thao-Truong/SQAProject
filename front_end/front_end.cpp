@@ -98,7 +98,7 @@ void FrontEnd::GetTransactions() {
         string account_holder = lt.GetName();
         Logout lo;
 
-        current_transactions.push_back(lo.Logout(account_holder));
+        current_transactions.push_back(lo.LogoutTransaction(account_holder));
 
         // output transactionfile
         lo.OutputTransactions(current_transactions);
