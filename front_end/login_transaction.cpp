@@ -42,12 +42,12 @@ void LoginTransaction::Login() {
     getline(cin, input);
     SetName(input);
     SetAmount("00000.00");
-  }
-  else {
+  } else {
     SetKind("A");
     SetAmount("00000.00");
   }
 }
+
 Users LoginTransaction::ReadAccounts(string name) {
   int i = 0;
   string first, last, acct_no, status, balance, plan;
@@ -60,9 +60,11 @@ Users LoginTransaction::ReadAccounts(string name) {
     users[i].SetBalance(balance);
     users[i].SetPlanType(plan);
     users[i].SetAccountName(first + " " + last);
+
     if (users[i].GetAccountName().compare(name) == 0) {
       return users[i];
-    }  
+    }
+
     if (users[i].GetAccountNumber().compare("00000") == 0) {
       users[i].SetAccountName("");
       users[i].SetAccountNumber("");
@@ -73,6 +75,4 @@ Users LoginTransaction::ReadAccounts(string name) {
     }
     i += 1;
   }
-}           
-                
-        
+}               

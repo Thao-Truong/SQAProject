@@ -34,5 +34,4 @@ using namespace std;
     planType = pt;
   }
 
- 
 #endif

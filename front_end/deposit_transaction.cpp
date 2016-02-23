@@ -27,27 +27,26 @@ string DepositTransaction::Process(Users user, Users* all_users) {
   }
   cout << "Account number:" << endl;
   cin >> account_number;
+
   if (user.GetAccountName() != "" && account_number != user.GetAccountNumber()) {   //check if account number matches account holder
     return "invalid";
   }
   cout << "Amount to Deposit:" << endl;
-  cin >> amount;                  
+  cin >> amount;      
+
   if (user.GetAccountName() != "") {   //get user's name for standard login
     name = user.GetAccountName();
   }
 
   if (user.GetPlanType() == "S") {         //get plan type to assess transaction fee
     fee = .05;
-  }
-  else if (user.GetPlanType() == "N") {
+  } else if (user.GetPlanType() == "N") {
     fee = .10;
-  }
-  else {
+  } else {
     fee = 0;
   }
   total = atof(amount.c_str()) - fee;     //total amount to deposit
             
-  }
   transaction_data = TransactionFile::WriteTransaction("deposit", name, account_number, amount, ""); 
   return transaction_data;       
 }

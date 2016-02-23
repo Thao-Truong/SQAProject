@@ -1,7 +1,6 @@
 #ifndef CREATE_TRANSACTION_H
 #define CREATE_TRANSACTION_H
 
-
 #include <string>
 #include "users.h"
 
