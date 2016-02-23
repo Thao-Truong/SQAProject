@@ -22,7 +22,7 @@ class LoginTransaction {
     void SetKind(string knd);
     void SetAmount(string amt);
      
-    void Login();   //determines whether the session is admin or standard
+    string Login();   //determines whether the session is admin or standard
 
     Users ReadAccounts(string name);   //reads in the current bank accounts file    
 };

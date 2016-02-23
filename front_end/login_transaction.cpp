@@ -32,7 +32,7 @@ void LoginTransaction::SetAmount(string amt) {
   amount = amt;
 }
       
-void LoginTransaction::Login() {
+string LoginTransaction::Login() {
   string input;
   string transaction_data = "";
 
@@ -49,7 +49,7 @@ void LoginTransaction::Login() {
     SetKind("A");
     SetAmount("00000.00");
   }
-  transaction_data = TransactionFile::WriteTransaction("login", GetName(), "", "", GetKind()); 
+  transaction_data = TransactionFile::WriteTransaction("login", GetName(), "", GetAmount(), GetKind()); 
   return transaction_data;  
 }
 
