@@ -69,7 +69,7 @@ void FrontEnd::GetTransactions() {
         } 
 
     } else if (input.compare("paybill") == 0 && flag == true) {
-        paybillTransaction pt;
+        PaybillTransaction pt;
         Users* all_users = lt.GetUsers();
         current_transactions.push_back(tt.Process(user, all_users));
 
