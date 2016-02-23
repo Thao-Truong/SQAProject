@@ -61,7 +61,11 @@ void FrontEnd::GetTransactions() {
     } else if (input.compare("transfer") == 0 && flag == true) {
         TransferTransaction tt;
         Users* all_users = lt.GetUsers();
-        current_transactions.push_back(tt.Process(user, all_users));
+
+        vector<string> transfer_transactions = tt.Process(user,all_users);
+
+        current_transactions.push_back(transfer_transactions.at(0));
+        current_transactions.push_back(transfer_transactions.at(1));
 
         if (current_transactions.back().compare("invalid") == 0) {
           cout << "Transaction invalid." << endl;

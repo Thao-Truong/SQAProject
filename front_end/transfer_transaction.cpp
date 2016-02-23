@@ -2,13 +2,14 @@
 #include <string>
 #include <stdio.h>
 #include <stdlib.h>
+#include <vector>
 
 #include "users.h"
 #include "transfer_transaction.h"
 
 using namespace std;
 
-string TransferTransaction::Process(Users user, Users* all_users) {
+vector<string> TransferTransaction::Process(Users user, Users* all_users) {
   double fee, total;
   string balance_from;    //balance of user for an admin login
   string account_to;
@@ -60,12 +61,17 @@ string TransferTransaction::Process(Users user, Users* all_users) {
   total = atof(amount.c_str()) + fee;
           
   if (user.GetAccountName() != "" && total > 1000.00) {   //standard user cannot transfer more than $1000.00
-    return -1;
+    return "invalid";
   }      
           
   if (user.GetAccountName() != "" && atof(user.GetBalance().c_str()) - total < 0.0001) {  // make sure account balance is at least $0.00
-     return -1;
+     return "invalid";
   }       
-  transaction_data = TransactionFile::WriteTransaction("transfer", name, account_number, amount, ""); 
+
+  // To do balance_to
+  // To do balance_from
+
+  transaction_data.pushback(TransactionFile::WriteTransaction("transfer", name_to, account_number_to, amount, "")); 
+  transaction_data.pushback(TransactionFile::WriteTransaction("transfer", name_from, account_number_from, amount, "")); 
   return transaction_data;              
 }
