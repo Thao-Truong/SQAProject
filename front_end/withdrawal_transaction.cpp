@@ -47,14 +47,14 @@ string WithdrawalTransaction::Process(Users user, Users* all_users) {
   total = atof(amount.c_str()) + fee;
          
   if (user.GetAccountName() != "" && total > 499.999) {  //check that standard user cannot withdraw more than $500
-    return -1;
+    return "invalid";
   }
           
   if (user.GetAccountName() != "" && (atof(user.GetBalance().c_str()) - total) < 0.001) {   //check if balance is at least $0.00 after withdrawal for standard user
-    return -1;
+    return "invalid";
   }
   if (user.GetAccountName() == "" && (atof(balance.c_str()) - total) < 0.001) {   //check if balance is at least $0.00 for admin user
-    return -1;
+    return "invalid";
   }    
   transaction_data = TransactionFile::WriteTransaction("withdraw", name, account_number, amount, ""); 
   return transaction_data;  

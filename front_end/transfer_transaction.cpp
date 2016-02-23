@@ -8,7 +8,7 @@
 
 using namespace std;
 
-int TransferTransaction::Process(Users user, Users* all_users) {
+string TransferTransaction::Process(Users user, Users* all_users) {
   double fee, total;
   string balance_from;    //balance of user for an admin login
   string account_to;
@@ -41,7 +41,7 @@ int TransferTransaction::Process(Users user, Users* all_users) {
     }
   }
   if (user.GetAccountName() != "" && account_number_to != account_to) {    //check if account_number_to is valid
-    return -1;
+    return "invalid";
   }
   cout << "Amount to Transfer:" << endl;
   cin >> amount;          
