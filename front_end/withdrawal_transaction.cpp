@@ -2,11 +2,10 @@
 #include <string>
 #include <stdio.h>
 #include <stdlib.h>
-#include "Users.cpp"
+#include "users.h"
 #include "withdrawal_transaction.h"
 
 using namespace std;
-
 
 int WithdrawalTransaction::Process(Users user, Users* all_users) {
   double fee, total;

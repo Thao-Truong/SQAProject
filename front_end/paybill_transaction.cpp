@@ -2,7 +2,7 @@
 #include <string>
 #include <stdio.h>
 #include <stdlib.h>
-#include "Users.cpp"
+#include "users.cpp"
 #include "paybill_transaction.h"
 
 using namespace std;

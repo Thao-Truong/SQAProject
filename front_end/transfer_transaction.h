@@ -2,7 +2,7 @@
 #define TRANSFER_TRANSACTION_H
 
 #include <string>
-#include "Users.cpp"
+#include "users.h"
 
 
 using namespace std;

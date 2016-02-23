@@ -2,7 +2,8 @@
 #include <string>
 #include <stdio.h>
 #include <stdlib.h>
-#include "Users.cpp"
+
+#include "users.h"
 #include "transfer_transaction.h"
 
 using namespace std;

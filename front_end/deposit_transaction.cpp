@@ -2,9 +2,10 @@
 #include <string>
 #include <stdio.h>
 #include <stdlib.h>
-#include "Users.cpp"
+
+#include "users.h"
 #include "deposit_transaction.h"
-#include "transaction_file.cpp"
+#include "transaction_file.h"
 
 using namespace std;
   

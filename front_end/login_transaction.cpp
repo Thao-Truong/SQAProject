@@ -1,7 +1,7 @@
 #include <iostream>
 #include <string>
 #include <fstream>
-#include "Users.cpp"
+#include "users.h"
 #include "login_transaction.h"
 
 using namespace std;

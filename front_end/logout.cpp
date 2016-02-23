@@ -1,11 +1,11 @@
 #include "logout.h"
-#include "transaction_file.cpp"
+#include "transaction_file.h"
 #include <string>
 #include <vector>
 
 using namespace std;
 
-string Logout::logout(string &user) {
+string Logout::LogoutTransaction(string &user) {
   string transaction_data;
 
   transaction_data = TransactionFile::WriteTransaction("end of session", user, "", "", "");

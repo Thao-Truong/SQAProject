@@ -8,7 +8,7 @@ using namespace std;
 
 class Logout{
   public:
-  	string logout(string &user);
+  	string LogoutTransaction(string &user);
   	void OutputTransactions(vector<string> current_transactions);
   protected:
   private:

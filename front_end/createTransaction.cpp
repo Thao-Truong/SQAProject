@@ -2,7 +2,8 @@
 #include <string>
 #include <stdio.h>
 #include <stdlib.h>
-#include "Users.cpp"
+
+#include "users.h"
 
 
 using namespace std;
@@ -28,4 +29,6 @@ class createTransaction {
           if (atof(balance.c_str()) > 99999.99 ) {   //max initial balance is $99999.99
              return -1;
           }
+        }
+      };
             
