@@ -58,7 +58,7 @@ void FrontEnd::GetTransactions() {
     } else if (input.compare("transfer") == 0 && flag == true) {
         TransferTransaction tt;
         Users* all_users = lt.GetUsers();
-        if (tt.process(user, all_users) == -1) {
+        if (tt.Process(user, all_users) == -1) {
           cout << "Transaction invalid." << endl;
           continue;
         } 
@@ -66,14 +66,14 @@ void FrontEnd::GetTransactions() {
     } else if (input.compare("paybill") == 0 && flag == true) {
         paybillTransaction pt;
         Users* all_users = lt.GetUsers();
-        if (pt.process(user, all_users) == -1) {
+        if (pt.Process(user, all_users) == -1) {
           cout << "Transaction invalid." << endl;
           continue;
         } 
 
     } else if (input.compare("create") == 0 && flag == true) { 
         CreateTransaction ct;
-        if  (ct.process(user) == -1) {
+        if  (ct.Process(user) == -1) {
           cout << "Transaction invalid." << endl;
           continue;
         }
