@@ -3,6 +3,7 @@
 #include <fstream>
 #include "users.h"
 #include "login_transaction.h"
+#include "transaction_file.h"
 
 using namespace std;
 

@@ -4,6 +4,7 @@
 #include <stdlib.h>
 #include "users.cpp"
 #include "paybill_transaction.h"
+#include "transaction_file.h"
 
 using namespace std;
 
