@@ -2,12 +2,13 @@
 #include <string>
 #include <fstream>
 #include <vector>
-#include "Users.cpp"
 #include <stdlib.h>
 #include <sstream>
 #include <iomanip>
 #include <vector>
+
 #include "transaction_file.h"
+#include "users.cpp"
 
 using namespace std;
 

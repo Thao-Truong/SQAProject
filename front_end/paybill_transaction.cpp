@@ -2,7 +2,7 @@
 #include <string>
 #include <stdio.h>
 #include <stdlib.h>
-#include "Users.cpp"
+#include "users.cpp"
 #include "paybill_transaction.h"
 
 using namespace std;
@@ -10,6 +10,7 @@ using namespace std;
 int PaybillTransaction::Process(Users user, Users* all_users) {
   double fee, total;
   string balance;    //balance of user for an admin login
+
   if (user.GetAccountName() == "") {  //if admin login...
     cout << "Account holder's name:" << endl;  //get account holder's name  (for admin login)
     cin.ignore();
@@ -23,15 +24,16 @@ int PaybillTransaction::Process(Users user, Users* all_users) {
   }
   cout << "Account number:" << endl;
   cin >> account_number;
+
   if (user.GetAccountName() != "" && account_number != user.GetAccountNumber()) {   //check if account number is valid
     return -1;
   }
   cout << "Company to whom bill is being paid:" << endl;
   cin >> company;
+
   if (company.compare("EC") != 0 && company.compare("CQ") != 0 && company.compare("TV") != 0) {  //can only accept companies EC, CQ, TV
     return -1;
   }
-
   cout << "Amount to pay:" << endl;
   cin >> amount;
        
@@ -41,11 +43,9 @@ int PaybillTransaction::Process(Users user, Users* all_users) {
 
   if (user.GetPlanType() == "S") {   //assess paybill transaction fee
     fee = .05;
-  }
-  else if (user.GetPlanType() == "N") {
+  } else if (user.GetPlanType() == "N") {
     fee = .10;
-  }
-  else {
+  } else {
     fee = 0;
   }
   total = atof(amount.c_str()) + fee;   //total, including fee
@@ -55,8 +55,7 @@ int PaybillTransaction::Process(Users user, Users* all_users) {
   }
   if (user.GetAccountName() != "" && total > 2000.00) {   //check if standard user does not exceed limit of $2000.00
     return -1;
-  }
-            
+  }   
 }
 
        

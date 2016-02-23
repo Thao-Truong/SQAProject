@@ -1,5 +1,5 @@
 #include <string>
-#include "Users.h"
+#include "users.h"
 
 using namespace std;
 
@@ -34,5 +34,4 @@ using namespace std;
     planType = pt;
   }
 
- 
 #endif

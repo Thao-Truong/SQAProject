@@ -2,7 +2,7 @@
 #define LOGIN_TRANSACTION_H
 
 #include <string>
-#include "Users.cpp"
+#include "users.h"
 
 using namespace std;
 
@@ -24,9 +24,7 @@ class LoginTransaction {
      
     void Login();   //determines whether the session is admin or standard
 
-    Users ReadAccounts(string name);   //reads in the current bank accounts file
-        
+    Users ReadAccounts(string name);   //reads in the current bank accounts file    
 };
 
-#endif     
-      
+#endif        

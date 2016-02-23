@@ -1,5 +1,4 @@
-#include "FrontEnd.cpp"
-
+#include "front_end.h"
 
 int main() {
    FrontEnd myFrontEnd;

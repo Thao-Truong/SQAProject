@@ -2,7 +2,8 @@
 #include <string>
 #include <stdio.h>
 #include <stdlib.h>
-#include "Users.cpp"
+
+#include "users.h"
 #include "transfer_transaction.h"
 
 using namespace std;
@@ -49,11 +50,9 @@ int TransferTransaction::Process(Users user, Users* all_users) {
 
   if (user.GetPlanType() == "S") {   //assess transaction fee
     fee = .05;
-  }
-  else if (user.GetPlanType() == "N") {
+  } else if (user.GetPlanType() == "N") {
     fee = .10;
-  }
-  else {
+  } else {
     fee = 0;
   }
   total = atof(amount.c_str()) + fee;
@@ -64,6 +63,5 @@ int TransferTransaction::Process(Users user, Users* all_users) {
           
   if (user.GetAccountName() != "" && atof(user.GetBalance().c_str()) - total < 0.0001) {  // make sure account balance is at least $0.00
      return -1;
-  }
-                   
+  }               
 }
