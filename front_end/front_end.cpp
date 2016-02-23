@@ -30,7 +30,7 @@ void FrontEnd::GetTransactions() {
       flag = true;
       previous = true;
       current_transactions.push_back(lt.Login());
-      user = lt.readAccounts(lt.GetName());
+      user = lt.ReadAccounts(lt.GetName());
       if (user.GetAccountName() == "" && lt.GetKind() != "A") {
         cout << "Transaction invalid" << endl;
         flag = false;
@@ -42,7 +42,9 @@ void FrontEnd::GetTransactions() {
         WithdrawalTransaction wt;
         Users* all_users = lt.GetUsers();
 
-        if (wt.Process(user, all_users) == -1) {
+        current_transactions.push_back(wt.Process(user, all_users));
+
+        if (current_transactions.back().compare("invalid") == 0) {
           cout << "Transaction invalid." << endl;
           continue;
         }
@@ -50,6 +52,7 @@ void FrontEnd::GetTransactions() {
         DepositTransaction dt;
         Users* all_users = lt.GetUsers();
         current_transactions.push_back(dt.Process(user, all_users));
+
         if (current_transactions.back().compare("invalid") == 0) {
           cout << "Transaction invalid." << endl;
           continue;
@@ -58,7 +61,9 @@ void FrontEnd::GetTransactions() {
     } else if (input.compare("transfer") == 0 && flag == true) {
         TransferTransaction tt;
         Users* all_users = lt.GetUsers();
-        if (tt.Process(user, all_users) == -1) {
+        current_transactions.push_back(tt.Process(user, all_users));
+
+        if (current_transactions.back().compare("invalid") == 0) {
           cout << "Transaction invalid." << endl;
           continue;
         } 
@@ -66,14 +71,18 @@ void FrontEnd::GetTransactions() {
     } else if (input.compare("paybill") == 0 && flag == true) {
         paybillTransaction pt;
         Users* all_users = lt.GetUsers();
-        if (pt.Process(user, all_users) == -1) {
+        current_transactions.push_back(tt.Process(user, all_users));
+
+        if (current_transactions.back().compare("invalid") == 0) {
           cout << "Transaction invalid." << endl;
           continue;
         } 
 
     } else if (input.compare("create") == 0 && flag == true) { 
         CreateTransaction ct;
-        if  (ct.Process(user) == -1) {
+        current_transactions.push_back(ct.Process(user));
+
+        if  (current_transactions.back().compare("invalid") == 0) {
           cout << "Transaction invalid." << endl;
           continue;
         }

@@ -10,7 +10,7 @@ Users* LoginTransaction::GetUsers() {
   return users;
 }
 
-string LoginTransaction::getName() {
+string LoginTransaction::GetName() {
   return name;
 }
      
@@ -33,6 +33,8 @@ void LoginTransaction::SetAmount(string amt) {
       
 void LoginTransaction::Login() {
   string input;
+  string transaction_data = "";
+
   cout << "Kind of Session:\n";
   cin >> input;
   if (input.compare("standard") == 0) {
@@ -46,6 +48,8 @@ void LoginTransaction::Login() {
     SetKind("A");
     SetAmount("00000.00");
   }
+  transaction_data = TransactionFile::WriteTransaction("login", GetName(), "", "", GetKind()); 
+  return transaction_data;  
 }
 
 Users LoginTransaction::ReadAccounts(string name) {

@@ -12,6 +12,8 @@ int TransferTransaction::Process(Users user, Users* all_users) {
   double fee, total;
   string balance_from;    //balance of user for an admin login
   string account_to;
+  string transaction_data = "";
+
   if (user.GetAccountName() == "") {   //check if admin login & get account holder's name
     cout << "Account holder's name:" << endl;
     cin.ignore();
@@ -26,7 +28,7 @@ int TransferTransaction::Process(Users user, Users* all_users) {
   cout << "Account number money will be transferred from:" << endl;
   cin >> account_number_from;
   if (user.GetAccountName() != "" && account_number_from != user.GetAccountNumber()) {   //check if account number is valid for the user
-    return -1;
+    return "invalid";
   }
           
   cout << "Account number money will be transferred to:" << endl;
@@ -63,5 +65,7 @@ int TransferTransaction::Process(Users user, Users* all_users) {
           
   if (user.GetAccountName() != "" && atof(user.GetBalance().c_str()) - total < 0.0001) {  // make sure account balance is at least $0.00
      return -1;
-  }               
+  }       
+  transaction_data = TransactionFile::WriteTransaction("transfer", name, account_number, amount, ""); 
+  return transaction_data;              
 }

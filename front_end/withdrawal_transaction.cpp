@@ -9,6 +9,8 @@ using namespace std;
 
 int WithdrawalTransaction::Process(Users user, Users* all_users) {
   double fee, total;
+  string transaction_data = "";
+  
   string balance;    //balance of user for an admin login
   if (user.GetAccountName() == "") {      //admin login
     cout << "Account holder's name:" << endl;
@@ -25,7 +27,7 @@ int WithdrawalTransaction::Process(Users user, Users* all_users) {
   cin >> account_number;
 
   if (user.GetAccountName() != "" && account_number != user.GetAccountNumber()) {  //check if account holder's name matches account number
-    return -1;
+    return "invalid";
   }
   cout << "Amount to withdraw:" << endl;
   cin >> amount;               
@@ -53,4 +55,6 @@ int WithdrawalTransaction::Process(Users user, Users* all_users) {
   if (user.GetAccountName() == "" && (atof(balance.c_str()) - total) < 0.001) {   //check if balance is at least $0.00 for admin user
     return -1;
   }    
+  transaction_data = TransactionFile::WriteTransaction("withdraw", name, account_number, amount, ""); 
+  return transaction_data;  
 }
