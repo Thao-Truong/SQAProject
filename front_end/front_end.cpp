@@ -64,13 +64,13 @@ void FrontEnd::GetTransactions() {
 
         vector<string> transfer_transactions = tt.Process(user,all_users);
 
-        current_transactions.push_back(transfer_transactions.at(0));
-        current_transactions.push_back(transfer_transactions.at(1));
-
         if (current_transactions.back().compare("invalid") == 0) {
           cout << "Transaction invalid." << endl;
           continue;
-        } 
+        } else {
+          current_transactions.push_back(transfer_transactions.at(0));
+          current_transactions.push_back(transfer_transactions.at(1));
+        }
 
     } else if (input.compare("paybill") == 0 && flag == true) {
         PaybillTransaction pt;
