@@ -5,6 +5,7 @@
 
 #include "users.h"
 #include "create_transaction.h"
+#include "transaction_file.h"
 
 using namespace std;
 
