@@ -4,10 +4,11 @@
 #include <stdlib.h>
 #include "users.h"
 #include "withdrawal_transaction.h"
+#include "transaction_file.h"
 
 using namespace std;
 
-int WithdrawalTransaction::Process(Users user, Users* all_users) {
+string WithdrawalTransaction::Process(Users user, Users* all_users) {
   double fee, total;
   string transaction_data = "";
   
