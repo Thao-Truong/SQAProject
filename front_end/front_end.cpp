@@ -49,7 +49,7 @@ void FrontEnd::GetTransactions() {
     } else if (input.compare("deposit") == 0 && flag == true) {
         DepositTransaction dt;
         Users* all_users = lt.GetUsers();
-        current_transactions.push_back(dt.process(user, all_users));
+        current_transactions.push_back(dt.Process(user, all_users));
         if (current_transactions.back().compare("invalid") == 0) {
           cout << "Transaction invalid." << endl;
           continue;
