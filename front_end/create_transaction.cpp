@@ -8,7 +8,7 @@
 
 using namespace std;
 
-int CreateTransaction::Process(Users user) {
+string CreateTransaction::Process(Users user) {
   if (user.GetAccountName() != "") {   //if not admin
     return -1;
   }
