@@ -7,7 +7,7 @@
 
 using namespace std;
 
-int PaybillTransaction::Process(Users user, Users* all_users) {
+string PaybillTransaction::Process(Users user, Users* all_users) {
   double fee, total;
   string balance;    //balance of user for an admin login
   string transaction_data = "";
