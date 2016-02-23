@@ -16,7 +16,7 @@ using namespace std;
     return balance;
   }
   string Users::GetPlanType() {
-    return planType;
+    return plan_type;
   }
   void Users::SetAccountName(string name) {
     account_name = name;
@@ -31,7 +31,6 @@ using namespace std;
     balance = bal;
   }
   void Users::SetPlanType(string pt) { 
-    planType = pt;
+    plan_type = pt;
   }
 
-#endif

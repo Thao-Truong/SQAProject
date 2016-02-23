@@ -2,6 +2,6 @@
 
 int main() {
    FrontEnd myFrontEnd;
-   myFrontEnd.getTransactions();
+   myFrontEnd.GetTransactions();
    return 0;
 }

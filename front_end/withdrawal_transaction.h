@@ -12,7 +12,7 @@ class WithdrawalTransaction {
     string name, account_number, amount;
 
   public:
-    int  Process(Users user, Users* all_users);   //process a withdrawal transaction
+    string  Process(Users user, Users* all_users);   //process a withdrawal transaction
 };
 
 #endif

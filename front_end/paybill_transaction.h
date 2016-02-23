@@ -11,7 +11,7 @@ class PaybillTransaction {
     string name, account_number, amount, company;
 
   public:
-    int Process(Users user, Users* all_users);
+    string Process(Users user, Users* all_users);
 };
 
 #endif

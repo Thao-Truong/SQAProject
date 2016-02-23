@@ -11,7 +11,7 @@ class CreateTransaction {
     string name, account_number, balance;
 
   public:
-    int Process(Users user); 
+    string Process(Users user); 
 };
             
 #endif

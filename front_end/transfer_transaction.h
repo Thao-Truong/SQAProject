@@ -11,6 +11,6 @@ class TransferTransaction {
       string name_from, name_to, account_number_from, account_number_to, amount;
 
    public:
-      int Process(Users user, Users* all_users); 
+      string Process(Users user, Users* all_users); 
 };
 #endif
