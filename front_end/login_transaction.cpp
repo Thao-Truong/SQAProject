@@ -53,7 +53,7 @@ string LoginTransaction::Login() {
   return transaction_data;  
 }
 
-Users LoginTransaction::ReadAccounts(string name) {
+/*Users LoginTransaction::ReadAccounts(string name) {
   int i = 0;
   string first, last, acct_no, status, balance, plan;
   ifstream infile;
@@ -79,5 +79,41 @@ Users LoginTransaction::ReadAccounts(string name) {
       return users[i];
     }
     i += 1;
+  } */
+Users LoginTransaction::ReadAccounts(string name) {
+  int i = 0;
+  string first, last, acct_no, status, balance, plan;
+  ifstream infile;
+  infile.open("accountsFile", ios::in);
+  while (1) {
+    infile >> acct_no >> first >> last >> status >> balance >>plan;
+    if (acct_no.compare("00000") == 0) {
+      break;
+    }
+    users[i].SetAccountNumber(acct_no);
+    users[i].SetStatus(status);
+    users[i].SetBalance(balance);
+    users[i].SetPlanType(plan);
+    users[i].SetAccountName(first + " " + last);
+    i += 1;
   }
-}               
+  for (i = 0; i < 10; i++) {
+    if (users[i].GetAccountName().compare(name) == 0) {
+      return users[i];
+    }
+   }
+}
+    
+
+
+
+
+
+
+
+
+
+
+
+
+              

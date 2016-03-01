@@ -106,6 +106,7 @@ void FrontEnd::GetTransactions() {
 
         // output transactionfile
         lo.OutputTransactions(current_transactions);
+        break;
     } else {
         cout << "Transaction invalid." << endl;
     }

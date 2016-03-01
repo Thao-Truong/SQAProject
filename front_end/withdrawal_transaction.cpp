@@ -21,6 +21,7 @@ string WithdrawalTransaction::Process(Users user, Users* all_users) {
   for (int i = 0; i < 10; i++) {   // search for balance of account holder
     if (all_users[i].GetAccountName().compare(name) == 0) {
       balance = all_users[i].GetBalance();
+      cout << balance << endl;
       break;
     }
   }
@@ -33,7 +34,7 @@ string WithdrawalTransaction::Process(Users user, Users* all_users) {
   cout << "Amount to withdraw:" << endl;
   cin >> amount;               
 
-  if (user.GetAccountName() != "") {  //name of account holder if admin login
+  if (user.GetAccountName() != "") {  //name of account holder if not admin login
     name = user.GetAccountName();
   }
 
@@ -56,6 +57,6 @@ string WithdrawalTransaction::Process(Users user, Users* all_users) {
   if (user.GetAccountName() == "" && (atof(balance.c_str()) - total) < 0.001) {   //check if balance is at least $0.00 for admin user
     return "invalid";
   }    
-  transaction_data = TransactionFile::WriteTransaction("withdraw", name, account_number, amount, ""); 
+  transaction_data = TransactionFile::WriteTransaction("withdrawal", name, account_number, amount, ""); 
   return transaction_data;  
 }

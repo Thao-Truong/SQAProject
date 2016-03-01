@@ -8,7 +8,7 @@
 #include <vector>
 
 #include "transaction_file.h"
-#include "users.cpp"
+#include "users.h"
 
 using namespace std;
 
@@ -49,25 +49,25 @@ using namespace std;
   string TransactionFile::FormatTransactionCode(string transaction) {
     if (!transaction.compare("end of session")) {
       return "00 ";
-    } else if (transaction.compare("withdrawal")) {
+    } else if (!transaction.compare("withdrawal")) {
       return "01 ";
-    } else if (transaction.compare("transfer")) {
+    } else if (!transaction.compare("transfer")) {
       return "02 ";
-    } else if (transaction.compare("paybill")) {
+    } else if (!transaction.compare("paybill")) {
       return "03 ";
-    } else if (transaction.compare("deposit")) {
+    } else if (!transaction.compare("deposit")) {
       return "04 ";
-    } else if (transaction.compare("create")) {
+    } else if (!transaction.compare("create")) {
       return "05 ";
-    } else if (transaction.compare("delete")) {
+    } else if (!transaction.compare("delete")) {
       return "06 ";
-    } else if (transaction.compare("disable")) {
+    } else if (!transaction.compare("disable")) {
       return "07 ";
-    } else if (transaction.compare("changeplan")) {
+    } else if (!transaction.compare("changeplan")) {
       return "08 ";
-    } else if (transaction.compare("enable")) {
+    } else if (!transaction.compare("enable")) {
       return "09 ";
-    } else if (transaction.compare("login")) {
+    } else if (!transaction.compare("login")) {
       return "10 ";
     } else {
       cout << "Transaction invalid";

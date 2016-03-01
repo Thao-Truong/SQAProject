@@ -16,7 +16,8 @@ string CreateTransaction::Process(Users user) {
     return "invalid";
   }
   cout << "Account holder's name:" << endl;
-  cin >> name;
+  cin.ignore();
+  getline(cin, name);
 
   if (name.length() > 20 ) {    //20 character max length for name
     return "invalid";
@@ -27,6 +28,6 @@ string CreateTransaction::Process(Users user) {
   if (atof(balance.c_str()) > 99999.99 ) {   //max initial balance is $99999.99
     return "invalid";
   }
-  transaction_data = TransactionFile::WriteTransaction("create", name, "", "", ""); 
+  transaction_data = TransactionFile::WriteTransaction("create", name, "", balance, ""); 
   return transaction_data;    
 }          
