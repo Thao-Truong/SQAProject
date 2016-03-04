@@ -15,7 +15,7 @@
 #include "users.h"
 #include "front_end.h"
 
-void FrontEnd::GetTransactions() {
+void FrontEnd::GetTransactions(string accountsFile, string transactionFile) {
   bool flag = false;      //flag to check that no transaction occurs before login
   bool previous = false;  //flag to check that no subsequent login should be accepted after a login, until after a logout
   string input;          //input line
