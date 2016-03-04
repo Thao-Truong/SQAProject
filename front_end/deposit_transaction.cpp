@@ -11,7 +11,6 @@ using namespace std;
   
 string DepositTransaction::Process(Users user, Users* all_users) {
   double fee, total;
-  string balance;    //balance of user for an admin login
   string transaction_data = "";
 
   if (user.GetAccountName() == "") {     //check for admin login
@@ -19,12 +18,10 @@ string DepositTransaction::Process(Users user, Users* all_users) {
     cin.ignore();
     getline(cin, name);
   }
-  for (int i = 0; i < 10; i++) {
-    if (all_users[i].GetAccountName().compare(name) == 0) {    //get account holder's balance
-      balance = all_users[i].GetBalance();
-      break;
-    }
+  else {
+    name = user.GetAccountName();
   }
+  
   cout << "Account number:" << endl;
   cin >> account_number;
 
@@ -33,10 +30,6 @@ string DepositTransaction::Process(Users user, Users* all_users) {
   }
   cout << "Amount to Deposit:" << endl;
   cin >> amount;      
-
-  if (user.GetAccountName() != "") {   //get user's name for standard login
-    name = user.GetAccountName();
-  }
 
   if (user.GetPlanType() == "S") {         //get plan type to assess transaction fee
     fee = .05;
