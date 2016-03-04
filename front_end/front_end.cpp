@@ -11,6 +11,7 @@
 #include "paybill_transaction.h"
 //#include "transaction_file.h"
 #include "withdrawal_transaction.h"
+#include "enable_transaction.h"
 #include "transfer_transaction.h"
 #include "users.h"
 #include "front_end.h"

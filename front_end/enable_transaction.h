@@ -11,7 +11,7 @@ class EnableTransaction {
     string name, account_number, status;
 
   public:
-    string EnableAccount(Users user); 
+    string Process(Users user, Users* all_users); 
 };
             
 #endif
