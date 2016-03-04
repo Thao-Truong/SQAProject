@@ -53,6 +53,13 @@ string LoginTransaction::Login() {
   return transaction_data;  
 }
 
+string NextTransaction::NextTrans() {
+  string input;
+  string transaction_data = "";
+
+  cout << "Enter a Transaction:\n"
+  cin >> input 
+}
 /*Users LoginTransaction::ReadAccounts(string name) {
   int i = 0;
   string first, last, acct_no, status, balance, plan;
