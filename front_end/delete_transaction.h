@@ -11,7 +11,7 @@ class DeleteTransaction {
     string name, account_number, status;
 
   public:
-    string DeleteAccount(Users user); 
+    string Process(Users user, Users* all_users); 
 };
             
 #endif
