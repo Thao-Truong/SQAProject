@@ -87,11 +87,11 @@ string NextTransaction::NextTrans() {
     }
     i += 1;
   } */
-Users LoginTransaction::ReadAccounts(string name) {
+Users LoginTransaction::ReadAccounts(string name, string accountsFile) {
   int i = 0;
   string first, last, acct_no, status, balance, plan;
   ifstream infile;
-  infile.open("accountsFile", ios::in);
+  infile.open(accountsFile.c_str(), ios::in);
   while (1) {
     infile >> acct_no >> first >> last >> status >> balance >>plan;
     if (acct_no.compare("00000") == 0) {

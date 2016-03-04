@@ -31,7 +31,7 @@ void FrontEnd::GetTransactions(string accountsFile, string transactionFile) {
       flag = true;
       previous = true;
       current_transactions.push_back(lt.Login());
-      user = lt.ReadAccounts(lt.GetName());
+      user = lt.ReadAccounts(lt.GetName(), accountsFile);
       if (user.GetAccountName() == "" && lt.GetKind() != "A") {
         cout << "Transaction invalid" << endl;
         flag = false;
