@@ -19,7 +19,9 @@ using namespace std;
 
     // Iterate through transactions and output to file
     for(vector<string>::const_iterator i = current_transactions.begin(); i != current_transactions.end(); ++i) {
+      if (*i != "invalid") {
         write_transaction << *i << endl;
+      }
     }
 
     write_transaction.close();
@@ -30,6 +32,11 @@ using namespace std;
 
     // format transaction code
     transaction += FormatTransactionCode(trans);
+    // cout << endl << "transaction code: " << transaction << endl;
+    // if (transaction == "invalid") {
+    //   cout << "invalid"; 
+    //   return NULL;
+    // }
 
     //format account holder's name
     transaction += FormatAccountName(name);
