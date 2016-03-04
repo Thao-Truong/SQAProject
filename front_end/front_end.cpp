@@ -14,6 +14,7 @@
 #include "enable_transaction.h"
 #include "disable_transaction.h"
 #include "transfer_transaction.h"
+#include "delete_transaction"
 #include "users.h"
 #include "front_end.h"
 
@@ -93,7 +94,15 @@ void FrontEnd::GetTransactions(string accountsFile, string transactionFile) {
           continue;
         }
 
-    } else if (input.compare("delete") == 0 && flag == true) {
+    } else if (input.compare("delete") == 0 && flag == true) {    
+        DeleteTransaction dt;
+        Users* all_users = lt.GetUsers();
+        current_transactions.push_back(dt.Process(user, all_users));
+        
+        if (current_transactions.back().compare("invalid") == 0) {
+          cout << "Transaction invalid." << endl;
+          continue; 
+        }
 
     } else if (input.compare("enable") == 0 && flag == true) {
         EnableTransaction et;
