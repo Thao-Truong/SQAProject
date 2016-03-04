@@ -6,11 +6,7 @@
 #include "users.h"
 #include "disable_transaction.h"
 
-using namespace std;
-
-// Disables an active account and writes the transaction line
-string Process(Users user) {
-  #include <iostream>
+#include <iostream>
 #include <string>
 #include <stdio.h>
 #include <stdlib.h>
