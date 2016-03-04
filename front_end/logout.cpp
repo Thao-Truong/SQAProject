@@ -12,7 +12,7 @@ string Logout::LogoutTransaction(string &user) {
   return transaction_data;
 }
 
-void Logout::OutputTransactions(vector<string> current_transactions) {
-  TransactionFile::OutputFile(current_transactions);
+void Logout::OutputTransactions(vector<string> current_transactions, string transactionFile) {
+  TransactionFile::OutputFile(current_transactions, transactionFile);
   return;
 }

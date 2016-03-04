@@ -9,7 +9,7 @@ using namespace std;
 class Logout{
   public:
   	string LogoutTransaction(string &user);
-  	void OutputTransactions(vector<string> current_transactions);
+  	void OutputTransactions(vector<string> current_transactions, string transactionFile);
   protected:
   private:
 };

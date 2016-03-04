@@ -8,7 +8,7 @@ using namespace std;
 
 class TransactionFile{
   public:
-  	static void OutputFile(vector<string> current_transactions);
+  	static void OutputFile(vector<string> current_transactions, string transactionFile);
   	static string WriteTransaction(string trans, string name, string number, string balance, string misc);
   	static string FormatTransactionCode(string transaction);
   	static string FormatAccountName(string name);

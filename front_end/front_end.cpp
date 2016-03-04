@@ -105,7 +105,7 @@ void FrontEnd::GetTransactions(string accountsFile, string transactionFile) {
         current_transactions.push_back(lo.LogoutTransaction(account_holder));
 
         // output transactionfile
-        lo.OutputTransactions(current_transactions);
+        lo.OutputTransactions(current_transactions, transactionFile);
         break;
     } else {
         cout << "Transaction invalid." << endl;

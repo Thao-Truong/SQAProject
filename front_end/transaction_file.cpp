@@ -12,10 +12,10 @@
 
 using namespace std;
 
-  void TransactionFile::OutputFile(vector<string> current_transactions) {
+  void TransactionFile::OutputFile(vector<string> current_transactions, string transactionFile) {
     // Write transactions to file
     ofstream write_transaction;
-    write_transaction.open("transactionfile", ios::app);
+    write_transaction.open(transactionFile.c_str(), ios::app);
 
     // Iterate through transactions and output to file
     for(vector<string>::const_iterator i = current_transactions.begin(); i != current_transactions.end(); ++i) {
