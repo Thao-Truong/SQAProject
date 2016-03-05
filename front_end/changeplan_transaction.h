@@ -11,7 +11,7 @@ class ChangePlanTransaction {
     string name, account_number, plan;
 
   public:
-    string ChangePlan(Users user); 
+    string Process(Users user, Users* all_users); 
 };
             
 #endif

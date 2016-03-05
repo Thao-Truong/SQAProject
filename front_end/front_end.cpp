@@ -123,7 +123,14 @@ void FrontEnd::GetTransactions(string accountsFile, string transactionFile) {
           continue; 
         }
     } else if (input.compare("changeplan") == 0 && flag == true) {
-
+        ChangePlanTransaction cpt;
+        Users* all_users = lt.GetUsers();
+        current_transactions.push_back(cpt.Process(user, all_users));
+ 
+        if (current_transactions.back().compare("invalid") == 0) {
+          cout << "Transaction invalid." << endl;
+          continue;
+        }
     } else if (input.compare("logout") == 0 && flag == true) {
         // logout transaction
         string account_holder = lt.GetName();
