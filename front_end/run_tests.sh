@@ -2,7 +2,7 @@
 # Run tests in a defined order and produce actual output files
 
 # Test directories and their order
-test_directories=("login" "logout" "withdrawal" "transfer" "paybill" "deposit" "create" "delete" "disable" "changeplan")
+test_directories=("login" "logout" "accountsfile" "withdrawal" "transfer" "paybill" "deposit" "create" "delete" "disable" "enable" "changeplan")
 
 for test_dir in "${test_directories[@]}"
 	do

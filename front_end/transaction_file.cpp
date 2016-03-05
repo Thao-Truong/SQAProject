@@ -93,12 +93,12 @@ using namespace std;
     return final_name;
   }
 
-  // Add left aligned zeros as necessary to ensure that the account number if 5 values
+  // Add left aligned spaces as necessary to ensure that the account number if 5 values
   string TransactionFile::FormatAccountNumber(string number) {
     string final_number = "";
 
     for (int i = number.length(); i < 5; i++) {
-      final_number += "0";
+      final_number += " ";
     }
     final_number += number;
 
