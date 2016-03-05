@@ -1,6 +1,17 @@
 #!/bin/bash
-for i in ./Tests/login/*; do
-	echo "running test $i"
-	./banksys $i/current_accounts $i/actual_transactions < $i/input > $i/actual_output
-done;
-echo "done"
+# Run tests in a defined order and produce actual output files
+
+# Test directories and their order
+test_directories=("login" "logout" "withdrawal" "transfer" "paybill" "deposit" "create" "delete" "disable" "changeplan")
+
+for test_dir in "${test_directories[@]}"
+	do
+		echo "Test Directory: $test_dir"
+
+		for i in ./Tests/$test_dir/*; do
+			echo "running test: $i"
+			./banksys $i/current_accounts $i/actual_transactions < $i/input > $i/actual_output
+		done;
+	done;
+
+echo "Tests complete"

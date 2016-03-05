@@ -17,9 +17,25 @@ string EnableTransaction::Process(Users user, Users* all_users) {
     cout << "Account holder's name:" << endl;
     cin.ignore();
     getline(cin, name);
+
+    for (int i = 0; i < 10; i++) {
+      bool valid_name = false;
+      cout << all_users[i].GetAccountName() << endl;
+      cout << name << endl ;
+      if (all_users[i].GetAccountName().compare(name) == 0) {
+        valid_name = true;
+        cout << "true";
+      }
+      cout << endl;
+      if (valid_name == false) {
+        cout << "Account holder doesn't exist.";
+        return "invalid";
+      }
+    }
   }
   else {
     cout << "Invalid transaction." << endl;
+    return "invalid";
   }
   cout << "Enter account number:" << endl;
   cin >> account_number;
