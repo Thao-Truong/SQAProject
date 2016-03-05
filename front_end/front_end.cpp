@@ -15,6 +15,7 @@
 #include "disable_transaction.h"
 #include "transfer_transaction.h"
 #include "delete_transaction.h"
+#include "changeplan_transaction.h"
 #include "users.h"
 #include "front_end.h"
 
