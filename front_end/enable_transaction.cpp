@@ -28,7 +28,6 @@ string EnableTransaction::Process(Users user, Users* all_users) {
       }
       cout << endl;
       if (valid_name == false) {
-        cout << "Account holder doesn't exist.";
         return "invalid";
       }
     }
