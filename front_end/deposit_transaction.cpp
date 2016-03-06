@@ -30,7 +30,9 @@ string DepositTransaction::Process(Users user, Users* all_users) {
   }
   cout << "Amount to Deposit:" << endl;
   cin >> amount;      
-
+  if (atof(amount.c_str()) > 99999.99 ) {
+    return "invalid";
+  }
   if (user.GetPlanType() == "S") {         //get plan type to assess transaction fee
     fee = .05;
   } else if (user.GetPlanType() == "N") {
