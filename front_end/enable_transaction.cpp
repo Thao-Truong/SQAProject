@@ -28,6 +28,7 @@ string EnableTransaction::Process(Users user, Users* all_users) {
       }
       cout << endl;
       if (valid_name == false) {
+        cout << "Invalid transaction." << endl;
         return "invalid";
       }
     }
