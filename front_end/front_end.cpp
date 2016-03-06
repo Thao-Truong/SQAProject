@@ -88,7 +88,8 @@ void FrontEnd::GetTransactions(string accountsFile, string transactionFile) {
 
     } else if (input.compare("create") == 0 && flag == true) { 
         CreateTransaction ct;
-        current_transactions.push_back(ct.Process(user));
+        Users* all_users = lt.GetUsers();
+        current_transactions.push_back(ct.Process(user, all_users));
 
         if  (current_transactions.back().compare("invalid") == 0) {
           cout << "Transaction invalid." << endl;

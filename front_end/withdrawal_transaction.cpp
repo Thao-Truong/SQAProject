@@ -13,6 +13,7 @@ string WithdrawalTransaction::Process(Users user, Users* all_users) {
   string transaction_data = "";
   
   string balance;    //balance of user for an admin login
+  string acct_number;  //account number of user for an admin login
   if (user.GetAccountName() == "") {      //admin login
     cout << "Account holder's name:" << endl;
     cin.ignore();
@@ -21,7 +22,7 @@ string WithdrawalTransaction::Process(Users user, Users* all_users) {
   for (int i = 0; i < 10; i++) {   // search for balance of account holder
     if (all_users[i].GetAccountName().compare(name) == 0) {
       balance = all_users[i].GetBalance();
-      cout << balance << endl;
+      acct_number = all_users[i].GetAccountNumber();
       break;
     }
   }
@@ -31,6 +32,10 @@ string WithdrawalTransaction::Process(Users user, Users* all_users) {
   if (user.GetAccountName() != "" && account_number != user.GetAccountNumber()) {  //check if account holder's name matches account number
     return "invalid";
   }
+  if (user.GetAccountName() == "" && account_number != acct_number) {  // same as above but for admin logins
+    return "invalid";
+  }
+
   cout << "Amount to withdraw:" << endl;
   cin >> amount;               
 

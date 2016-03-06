@@ -8,3 +8,6 @@ delete
 disable
 changeplan
 enable
+login
+admin
+logout

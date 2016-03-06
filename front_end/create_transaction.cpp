@@ -9,7 +9,7 @@
 
 using namespace std;
 
-string CreateTransaction::Process(Users user) {
+string CreateTransaction::Process(Users user, Users* all_users) {
   string transaction_data = "";
 
   if (user.GetAccountName() != "") {   //if not admin
@@ -18,7 +18,11 @@ string CreateTransaction::Process(Users user) {
   cout << "Account holder's name:" << endl;
   cin.ignore();
   getline(cin, name);
-
+  for (int i = 0; i < 10; i++) {
+    if (all_users[i].GetAccountName().compare(name)) {
+      return "invalid";
+    }
+  }
   if (name.length() > 20 ) {    //20 character max length for name
     return "invalid";
   }

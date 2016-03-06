@@ -11,6 +11,7 @@ using namespace std;
 string PaybillTransaction::Process(Users user, Users* all_users) {
   double fee, total;
   string balance;    //balance of user for an admin login
+  string acct_number;  //account number of user for an admin login
   string transaction_data = "";
 
   if (user.GetAccountName() == "") {  //if admin login...
@@ -21,6 +22,7 @@ string PaybillTransaction::Process(Users user, Users* all_users) {
   for (int i = 0; i < 10; i++) {   //search for balance of account holder
     if (all_users[i].GetAccountName().compare(name) == 0) {  
       balance = all_users[i].GetBalance();
+      acct_number = all_users[i].GetAccountNumber();
       break;
     }
   }
@@ -28,6 +30,9 @@ string PaybillTransaction::Process(Users user, Users* all_users) {
   cin >> account_number;
 
   if (user.GetAccountName() != "" && account_number != user.GetAccountNumber()) {   //check if account number is valid
+    return "invalid";
+  }
+  if (user.GetAccountName() == "" && account_number != acct_number) {
     return "invalid";
   }
   cout << "Company to whom bill is being paid:" << endl;
