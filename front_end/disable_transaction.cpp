@@ -47,4 +47,5 @@ string DisableTransaction::Process(Users user, Users* all_users) {
     return "invalid";
   }
     
-}       
+}  
+     

@@ -30,4 +30,5 @@ string CreateTransaction::Process(Users user) {
   }
   transaction_data = TransactionFile::WriteTransaction("create", name, "", balance, ""); 
   return transaction_data;    
-}          
+}  
+        

@@ -43,3 +43,4 @@ string DepositTransaction::Process(Users user, Users* all_users) {
   transaction_data = TransactionFile::WriteTransaction("deposit", name, account_number, amount, ""); 
   return transaction_data;       
 }
+
