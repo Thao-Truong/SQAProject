@@ -19,7 +19,7 @@ string CreateTransaction::Process(Users user, Users* all_users) {
   cin.ignore();
   getline(cin, name);
   for (int i = 0; i < 10; i++) {
-    if (all_users[i].GetAccountName().compare(name)) {
+    if (all_users[i].GetAccountName().compare(name) == 0) {
       return "invalid";
     }
   }
