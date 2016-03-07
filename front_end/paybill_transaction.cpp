@@ -35,13 +35,13 @@ string PaybillTransaction::Process(Users user, Users* all_users) {
   if (user.GetAccountName() == "" && account_number != acct_number) {
     return "invalid";
   }
-  cout << "Company to whom bill is being paid:" << endl;
+  cout << "Payee:" << endl;
   cin >> company;
 
   if (company.compare("EC") != 0 && company.compare("CQ") != 0 && company.compare("TV") != 0) {  //can only accept companies EC, CQ, TV
     return "invalid";
   }
-  cout << "Amount to pay:" << endl;
+  cout << "Amount:" << endl;
   cin >> amount;
        
   if (user.GetAccountName() != "") {  // get name of user (for standard login)
