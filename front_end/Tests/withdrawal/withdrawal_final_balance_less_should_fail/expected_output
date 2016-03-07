@@ -3,5 +3,6 @@ Kind of Session:
 Enter a transaction:
 Account holder's name:
 Account number:
-Amount:
+Amount to withdraw:
+Transaction invalid.
 Enter a transaction:
