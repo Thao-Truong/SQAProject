@@ -28,7 +28,7 @@ string DepositTransaction::Process(Users user, Users* all_users) {
   if (user.GetAccountName() != "" && account_number != user.GetAccountNumber()) {   //check if account number matches account holder
     return "invalid";
   }
-  cout << "Amount to Deposit:" << endl;
+  cout << "Amount to deposit:" << endl;
   cin >> amount;      
   if (atof(amount.c_str()) > 99999.99 ) {
     return "invalid";
