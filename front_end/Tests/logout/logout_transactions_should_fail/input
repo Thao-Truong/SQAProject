@@ -9,4 +9,5 @@ deposit
 create
 delete
 disable
+enable
 changeplan
