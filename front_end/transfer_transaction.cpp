@@ -61,17 +61,24 @@ using namespace std;
   } else {
     fee = 0;
   }
+
+
   total = atof(amount.c_str()) + fee;
-          
+    
+
   if (user.GetAccountName() != "" && total > 1000.00) {   //standard user cannot transfer more than $1000.00
     transaction_data.push_back("invalid");
+    cout << "invalid 1" << endl;
     return transaction_data;
   }      
+
           
   if (user.GetAccountName() != "" && atof(user.GetBalance().c_str()) - total < 0.0001) {  // make sure account balance is at least $0.00
+     cout << "invalid 2" << endl;
      transaction_data.push_back("invalid");
     return transaction_data;
   }       
+
 
   // To do balance_to
   // To do balance_from

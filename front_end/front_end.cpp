@@ -68,7 +68,7 @@ void FrontEnd::GetTransactions(string accountsFile, string transactionFile) {
 
         vector<string> transfer_transactions = tt.Process(user,all_users);
 
-        if (current_transactions.back().compare("invalid") == 0) {
+        if (transfer_transactions.back().compare("invalid") == 0) {
           cout << "Transaction invalid." << endl;
           continue;
         } else {
