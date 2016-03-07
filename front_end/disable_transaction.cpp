@@ -27,10 +27,10 @@ string DisableTransaction::Process(Users user, Users* all_users) {
     getline(cin, name);
   }
   else {
-    cout << "Invalid transaction." << endl;
+    cout << "Transaction invalid." << endl;
     return "invalid";
   }
-  cout << "Enter account number:" << endl;
+  cout << "Account number:" << endl;
   cin >> account_number;
 
   for (int i = 0; i < 10; i++) {   // search for status of account holder

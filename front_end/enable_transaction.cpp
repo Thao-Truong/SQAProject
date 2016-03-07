@@ -28,16 +28,16 @@ string EnableTransaction::Process(Users user, Users* all_users) {
       }
       cout << endl;
       if (valid_name == false) {
-        cout << "Invalid transaction." << endl;
+        cout << "Account holder doesn't exist.";
         return "invalid";
       }
     }
   }
   else {
-    cout << "Invalid transaction." << endl;
+    cout << "Transaction invalid." << endl;
     return "invalid";
   }
-  cout << "Enter account number:" << endl;
+  cout << "Account number:" << endl;
   cin >> account_number;
 
   for (int i = 0; i < 10; i++) {   // search for status of account holder
