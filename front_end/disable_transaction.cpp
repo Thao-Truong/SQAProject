@@ -28,6 +28,7 @@ string DisableTransaction::Process(Users user, Users* all_users) {
   }
   else {
     cout << "Invalid transaction." << endl;
+    return "invalid";
   }
   cout << "Enter account number:" << endl;
   cin >> account_number;
