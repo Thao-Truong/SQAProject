@@ -40,7 +40,7 @@ string LoginTransaction::Login() {
   cin >> input;
   if (input.compare("standard") == 0) {
     SetKind("S");
-    cout << "Account Holder's Name:\n";
+    cout << "Account holder's name:\n";
     cin.ignore();
     getline(cin, input);
     SetName(input);
