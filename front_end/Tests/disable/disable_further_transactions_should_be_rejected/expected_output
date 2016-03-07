@@ -1,15 +1,7 @@
-Enter login:
-
+Enter a transaction:
 Kind of Session:
-
-Login successful
 Enter a transaction:
-
 Account holder's name:
-
 Account number:
-
-Cannot process - Account disabled
+Transaction invalid.
 Enter a transaction:
-
-Logout Successful
