@@ -1,17 +1,8 @@
-Enter login:
-
+Enter a transaction:
 Kind of Session:
-
-Login Successful.
 Enter a transaction:
-
 Account holder's name:
-
 Account number:
-
 Payee:
-
-Invalid Payee.
+Transaction invalid.
 Enter a transaction:
-
-Logout Successful.
