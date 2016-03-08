@@ -57,7 +57,7 @@ using namespace std;
     transaction_data.push_back("invalid");
     return transaction_data;
   }
-  cout << "Amount to transfer:" << endl;
+  cout << "Amount of transfer:" << endl;
   cin >> amount;          
 
   if (user.GetAccountName() != "") {   //if standard login 
