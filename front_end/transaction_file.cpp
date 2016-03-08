@@ -15,7 +15,7 @@ using namespace std;
   void TransactionFile::OutputFile(vector<string> current_transactions, string transactionFile) {
     // Write transactions to file
     ofstream write_transaction;
-    write_transaction.open(transactionFile.c_str(), ios::app);
+    write_transaction.open(transactionFile.c_str(), std::ios_base::app);
 
     // Iterate through transactions and output to file
     for(vector<string>::const_iterator i = current_transactions.begin(); i != current_transactions.end(); ++i) {
