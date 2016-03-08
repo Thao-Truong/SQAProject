@@ -8,7 +8,7 @@
 using namespace std;
 
 string LoginTransaction::Input(Users user){
-  (user.GetAccountName() == "") {
+  if (user.GetAccountName() == "") {
     cout << "Account holder's name:" << endl;
     cin.ignore();
     getline(cin, name);
