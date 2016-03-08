@@ -58,9 +58,20 @@ string PaybillTransaction::Process(Users user, Users* all_users) {
   total = atof(amount.c_str()) + fee;   //total, including fee
 
   if (total > atof(user.GetBalance().c_str())) {  //check to make sure balance after is at least $0.00
-    return "invalid";
+    if (user.GetAccountName() == "") {
+      for (int i = 0; i < 10; i++) {   // search for status of account holder
+        if (all_users[i].GetAccountName().compare(name) == 0) {
+          if (total > atof(all_users[i].GetBalance().c_str())) {
+            return "invalid";
+          }
+          break;
+        }
+      }
+    } else {
+       return "invalid";
+    }
   }
-  if (user.GetAccountName() != "" && total > 2000.00) {   //check if standard user does not exceed limit of $2000.00
+  if (user.GetAccountName() != "" && atof(amount.c_str()) > 2000.00) {   //check if standard user does not exceed limit of $2000.00
     return "invalid.";
   }  
   transaction_data = TransactionFile::WriteTransaction("paybill", name, account_number, amount, company); 
