@@ -29,9 +29,19 @@ using namespace std;
   }
   cout << "Account number money will be transferred from:" << endl;
   cin >> account_number_from;
+
   if (user.GetAccountName() != "" && account_number_from != user.GetAccountNumber()) {   //check if account number is valid for the user
     transaction_data.push_back("invalid");
     return transaction_data;
+  } else if (user.GetAccountName() == "" ){
+    for (int i = 0; i < 10; i++) {   // search for users for acc numbers
+      if (all_users[i].GetAccountName().compare(name_from) == 0){
+        if (all_users[i].GetAccountNumber().compare(account_number_from) != 0) {
+          transaction_data.push_back("invalid");
+          return transaction_data;
+        }
+      }
+    }
   }
           
   cout << "Account number money will be transferred to:" << endl;
@@ -47,7 +57,7 @@ using namespace std;
     transaction_data.push_back("invalid");
     return transaction_data;
   }
-  cout << "Amount to Transfer:" << endl;
+  cout << "Amount to transfer:" << endl;
   cin >> amount;          
 
   if (user.GetAccountName() != "") {   //if standard login 
