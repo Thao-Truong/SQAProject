@@ -64,7 +64,6 @@ string PaybillTransaction::Process(Users user, Users* all_users) {
           if (total > atof(all_users[i].GetBalance().c_str())) {
             return "invalid";
           }
-          break;
         }
       }
     } else {
@@ -72,7 +71,7 @@ string PaybillTransaction::Process(Users user, Users* all_users) {
     }
   }
   if (user.GetAccountName() != "" && atof(amount.c_str()) > 2000.00) {   //check if standard user does not exceed limit of $2000.00
-    return "invalid.";
+    return "invalid";
   }  
   transaction_data = TransactionFile::WriteTransaction("paybill", name, account_number, amount, company); 
   return transaction_data;        
