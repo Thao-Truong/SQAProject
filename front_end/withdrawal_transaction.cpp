@@ -5,6 +5,7 @@
 #include "users.h"
 #include "withdrawal_transaction.h"
 #include "transaction_file.h"
+#include "math.h"
 
 using namespace std;
 
@@ -37,7 +38,11 @@ string WithdrawalTransaction::Process(Users user, Users* all_users) {
   }
 
   cout << "Amount to withdraw:" << endl;
-  cin >> amount;               
+  cin >> amount;
+
+  if (fmod(atof(amount.c_str()), 5.00) != 0) {
+    return "invalid";             
+  }
 
   if (user.GetAccountName() != "") {  //name of account holder if not admin login
     name = user.GetAccountName();
