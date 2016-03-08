@@ -7,6 +7,15 @@
 
 using namespace std;
 
+string LoginTransaction::Input(Users user){ //Getting user's account name at the beginning to help reduce redundancy
+  if (user.GetAccountName() == "") {
+    cout << "Account holder's name:" << endl;
+    cin.ignore();
+    getline(cin, name);
+  }
+  return name;
+ }
+
 Users* LoginTransaction::GetUsers() {
   return users;
 }
@@ -53,13 +62,7 @@ string LoginTransaction::Login() {
   return transaction_data;  
 }
 
-string LoginTransaction::NextTrans() {
-  string input;
-  string transaction_data = "";
 
-  cout << "Enter a Transaction:\n";
-  cin >> input ;
-}
 /*Users LoginTransaction::ReadAccounts(string name) {
   int i = 0;
   string first, last, acct_no, status, balance, plan;

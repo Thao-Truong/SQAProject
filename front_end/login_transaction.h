@@ -13,6 +13,7 @@ class LoginTransaction {
     string name, kind;
     Users users[10];
   public:
+    string Input(Users users);
     Users* GetUsers();   //returns the array of users
     string GetName();    
     string GetKind();
@@ -24,7 +25,6 @@ class LoginTransaction {
      
     string Login();   //determines whether the session is admin or standard
 
-    string NextTrans();
     Users ReadAccounts(string name, string accountsFile);   //reads in the current bank accounts file    
 };
 
