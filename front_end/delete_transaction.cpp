@@ -19,7 +19,6 @@ string DeleteTransaction::Process(Users user, Users* all_users) {
     getline(cin, name);
   }
   else {
-    cout << "Transaction invalid." << endl;
     return "invalid";
   }
   cout << "Account number:" << endl;
