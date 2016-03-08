@@ -66,7 +66,7 @@ using namespace std;
   total = atof(amount.c_str()) + fee;
     
 
-  if (user.GetAccountName() != "" && total > 1000.00) {   //standard user cannot transfer more than $1000.00
+  if (user.GetAccountName() != "" && atof(amount.c_str()) > 1000.00) {   //standard user cannot transfer more than $1000.00
     transaction_data.push_back("invalid");
     return transaction_data;
   }      
