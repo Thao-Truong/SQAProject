@@ -68,13 +68,11 @@ using namespace std;
 
   if (user.GetAccountName() != "" && total > 1000.00) {   //standard user cannot transfer more than $1000.00
     transaction_data.push_back("invalid");
-    cout << "invalid 1" << endl;
     return transaction_data;
   }      
 
           
   if (user.GetAccountName() != "" && atof(user.GetBalance().c_str()) - total < 0.0001) {  // make sure account balance is at least $0.00
-     cout << "invalid 2" << endl;
      transaction_data.push_back("invalid");
     return transaction_data;
   }       
@@ -82,8 +80,8 @@ using namespace std;
 
   // To do balance_to
   // To do balance_from
-
-  transaction_data.push_back(TransactionFile::WriteTransaction("transfer", name_to, account_number_to, amount, "")); 
   transaction_data.push_back(TransactionFile::WriteTransaction("transfer", name_from, account_number_from, amount, "")); 
+  transaction_data.push_back(TransactionFile::WriteTransaction("transfer", name_to, account_number_to, amount, "")); 
+
   return transaction_data;              
 }

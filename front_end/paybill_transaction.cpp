@@ -63,7 +63,7 @@ string PaybillTransaction::Process(Users user, Users* all_users) {
   if (user.GetAccountName() != "" && total > 2000.00) {   //check if standard user does not exceed limit of $2000.00
     return "invalid.";
   }  
-  transaction_data = TransactionFile::WriteTransaction("paybill", name, account_number, amount, ""); 
+  transaction_data = TransactionFile::WriteTransaction("paybill", name, account_number, amount, company); 
   return transaction_data;        
 }
 
