@@ -20,21 +20,21 @@ string EnableTransaction::Process(Users user, Users* all_users) {
 
     for (int i = 0; i < 10; i++) {
       bool valid_name = false;
-      cout << all_users[i].GetAccountName() << endl;
-      cout << name << endl ;
+      
+     
       if (all_users[i].GetAccountName().compare(name) == 0) {
         valid_name = true;
-        cout << "true";
+        
       }
       cout << endl;
       if (valid_name == false) {
-        cout << "Account holder doesn't exist.";
+       
         return "invalid";
       }
     }
   }
   else {
-    cout << "Transaction invalid." << endl;
+    
     return "invalid";
   }
   cout << "Account number:" << endl;
