@@ -13,7 +13,7 @@ class LoginTransaction {
     string name, kind;
     Users users[10];
   public:
-    string Input();
+    string Input(Users users);
     Users* GetUsers();   //returns the array of users
     string GetName();    
     string GetKind();
