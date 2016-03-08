@@ -7,6 +7,15 @@
 
 using namespace std;
 
+string LoginTransaction::Input(Users user, Users* all_users){
+  (user.GetAccountName() == "") {
+    cout << "Account holder's name:" << endl;
+    cin.ignore();
+    getline(cin, name);
+  }
+  return name;
+ }
+
 Users* LoginTransaction::GetUsers() {
   return users;
 }

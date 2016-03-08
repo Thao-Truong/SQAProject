@@ -41,7 +41,11 @@ void FrontEnd::GetTransactions(string accountsFile, string transactionFile) {
         previous = false;
         continue;
       }  
-                   
+    } else if (input.compare(GetName()) == 0 && flag == true) {
+        LoggedIn li;
+        Users* all_users = lt.GetUsers();
+        continue;               
+      }
     } else if (input.compare("withdrawal") == 0 && flag == true) {
         WithdrawalTransaction wt;
         Users* all_users = lt.GetUsers();
