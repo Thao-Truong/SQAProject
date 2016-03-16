@@ -3,7 +3,7 @@ import java.io.*;
 // Processes the transaction files and user files
 public class BackEnd {
   private String transactionFile = "transactions";
-  private String userFile;
+  private String userFile = "current_accounts";
 
   // Constructor
   public BackEnd() {
@@ -20,6 +20,7 @@ public class BackEnd {
   // Processes transactions
   public void processTransactions() {
   	FileReader transactionsReader = getFile(transactionFile);
+  	// UserAccounts userAccounts = new UserAccounts(userFile);
 
   	try {
 	  	BufferedReader br = new BufferedReader(transactionsReader);
@@ -32,10 +33,12 @@ public class BackEnd {
 
 	  		Transaction transaction = new Transaction(currentTransaction);
 
-	  		if (transaction.getCode() == "00") {
-	  			//process transaction
-	  		} 
-	  		System.out.println(transactionLine);
+	  		// if (transaction.getCode() == "00") {
+	  		// 	//process transaction
+	  		// } 
+
+
+	  		System.out.println(currentTransaction);
 	  	}
   	} catch (Exception E) {
   		System.out.println("err");
@@ -50,11 +53,11 @@ public class BackEnd {
     // If it doesn't exist - create
     try {
       File file = new File(fileName);
-      if (file.exists()) {
-      	fr = new FileReader(fileName);
-      } else {
+      if (!file.exists()) {
       	file.createNewFile();
       }
+
+      fr = new FileReader(file);
     } catch (FileNotFoundException e) {
       	
       	// Err file not found message
