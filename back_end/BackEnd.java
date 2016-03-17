@@ -6,6 +6,10 @@ public class BackEnd {
   private String userFile = "current_accounts";
   private UserAccounts userAccounts;
 
+  /* if transfer transaction check that there are two */
+  boolean transferCheck = false;
+
+
 
   /* Constructor for BackEnd class that calls the appropriate method to begin processing the trasactions*/
   public BackEnd() {
@@ -30,6 +34,7 @@ public class BackEnd {
   public void processTransactions() {
   	FileReader transactionsReader = getFile(transactionFile);
   	userAccounts = new UserAccounts(userFile);
+    
 
   	try {
 	  	BufferedReader br = new BufferedReader(transactionsReader);
@@ -125,7 +130,33 @@ public class BackEnd {
 	* @param transaction - currently being processed transaction
   */
   private void transfer(Transaction transaction) {
+    int index = userAccounts.getIndex(transaction.getNumber());
+    User currentUser = userAccounts.getUser(index);
+    float currentBalance = Float.parseFloat(currentUser.getBalance());
 
+    if (transferCheck == false) {} 
+      // Deduct transaction fee
+      if (currentUser.getPlan() == "S") {
+        currentBalance -= 0.05;
+      } else if (currentUser.getPlan() == "N") {
+        currentBalance -= 0.10;
+      }
+
+
+      // Deduct funds for transfer transaction 
+      currentBalance -= Float.parseFloat(transaction.getFunds());
+      currentUser.setBalance(Float.toString(currentBalance));
+      userAccounts.updateUser(index, currentUser);
+
+      transferCheck = true;
+    } else {
+      // Add funds for transfer transaction 
+      currentBalance += Float.parseFloat(transaction.getFunds());
+      currentUser.setBalance(Float.toString(currentBalance));
+      userAccounts.updateUser(index, currentUser);
+
+      transferCheck = true;
+    }
   }
 
   /* 
