@@ -101,9 +101,9 @@ public class BackEnd {
   * Retrieves the user data and removes specified amount from their balance
 	* @param transaction - currently being processed transaction
   */
-  private void withdrawal(String transaction) {
+  private void withdrawal(Transaction transaction) {
   	int index = userAccounts.getIndex(transaction.getNumber());
-  	currentUser = userAccounts.getUser(index);
+  	User currentUser = userAccounts.getUser(index);
   	float currentBalance = currentUser.getBalance();
 
   	// Deduct transaction fee
@@ -116,6 +116,7 @@ public class BackEnd {
   	// Deduct funds for withdrawal transaction to account
   	currentBalance -= transaction.getFunds();
   	currentUser.setBalance(currentBalance);
+    userAccounts.updateUser(index, currentUser);
   }
 
   /* 
@@ -123,7 +124,7 @@ public class BackEnd {
   * adds the specified amount to the specified account
 	* @param transaction - currently being processed transaction
   */
-  private void transfer(String transaction) {
+  private void transfer(Transaction transaction) {
 
   }
 
@@ -131,9 +132,9 @@ public class BackEnd {
   * Retrieves the user data and removes specified amount from their balance to paybill
 	* @param transaction - currently being processed transaction
   */
-  private void paybill(String transaction) {
+  private void paybill(Transaction transaction) {
   	int index = userAccounts.getIndex(transaction.getNumber());
-  	currentUser = userAccounts.getUser(index);
+  	User currentUser = userAccounts.getUser(index);
   	float currentBalance = currentUser.getBalance();
 
   	// Deduct transaction fee
@@ -146,15 +147,16 @@ public class BackEnd {
   	// Deduct funds for paybill transaction to account
   	currentBalance -= transaction.getFunds();
   	currentUser.setBalance(currentBalance);
+    userAccounts.updateUser(index, currentUser);
   }
 
   /* 
   * Retrieves the user data and adds the specified amount to their balance
 	* @param transaction - currently being processed transaction
   */
-  private void deposit(String transaction) {
+  private void deposit(Transaction transaction) {
   	int index = userAccounts.getIndex(transaction.getNumber());
-  	currentUser = userAccounts.getUser(index);
+  	User currentUser = userAccounts.getUser(index);
   	float currentBalance = currentUser.getBalance();
 
   	// Deduct transaction fee
@@ -167,13 +169,14 @@ public class BackEnd {
   	// Add funds for deposit transaction to account
   	currentBalance += transaction.getFunds();
   	currentUser.setBalance(currentBalance);
+    userAccounts.updateUser(index, currentUser);
   }
 
   /* 
   * Creates a new user as specified by the create transaction
 	* @param transaction - currently being processed transaction
   */
-  private void create(String transaction) {
+  private void create(Transaction transaction) {
   	User newUser = new User();
   	newUser.setUserName(transaction.getName());
   	newUser.setAccountNumber(transaction.getNumber()); ////////////////////////////// Is this given in the transaction file?  Or do we randomly generate it in the backend
@@ -186,29 +189,31 @@ public class BackEnd {
   * Deletes a user as specified by the transaction
 	* @param transaction - currently being processed transaction
   */
-  private void delete(String transaction) {
+  private void delete(Transaction transaction) {
   	int index = userAccounts.getIndex(transaction.getNumber());
-  	currentUser = userAccounts.removeUser(index);
+  	User currentUser = userAccounts.removeUser(index);
+    userAccounts.updateUser(index, currentUser);
   }
 
   /* 
   * Retrieves the user data and sets the account to disabled
 	* @param transaction - currently being processed transaction
   */
-  private void disable(String transaction) {
+  private void disable(Transaction transaction) {
   	int index = userAccounts.getIndex(transaction.getNumber());
-  	currentUser = userAccounts.getUser(index);
+  	User currentUser = userAccounts.getUser(index);
 
   	currentUser.setStatus("D");
+    userAccounts.updateUser(index, currentUser);
   }
 
   /* 
   * Retrieves the user data and changes the plan type
 	* @param transaction - currently being processed transaction
   */
-  private void changePlan(String transaction) {
+  private void changePlan(Transaction transaction) {
   	int index = userAccounts.getIndex(transaction.getNumber());
-  	currentUser = userAccounts.getUser(index);
+  	User currentUser = userAccounts.getUser(index);
   	currentPlan = currentUser.getPlan();
 
   	if (currentPlan == "S") {
@@ -218,29 +223,31 @@ public class BackEnd {
   	}
 
   	currentUser.setPlan(currentPlan);
+    userAccounts.updateUser(index, currentUser);
   }
 
   /* 
   * Retrieves the user data and sets the account status to enabled
 	* @param transaction - currently being processed transaction
   */
-  private void enable(String transaction) {
+  private void enable(Transaction transaction) {
   	int index = userAccounts.getIndex(transaction.getNumber());
-  	currentUser = userAccounts.getUser(index);
+  	User currentUser = userAccounts.getUser(index);
 
   	currentUser.setStatus("A");
+    userAccounts.updateUser(index, currentUser);
   }
 
   /* 
   * ...
 	* @param transaction - currently being processed transaction
   */
-  private void login(String transaction) {
+  private void login(Transaction transaction) {
 
   }
 
   /* Last transaction */ 
-  private void endOfSession() {
+  private void endOfSession(Transaction transaction) {
 
   }
 
