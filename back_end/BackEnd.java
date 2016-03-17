@@ -104,7 +104,7 @@ public class BackEnd {
   private void withdrawal(Transaction transaction) {
   	int index = userAccounts.getIndex(transaction.getNumber());
   	User currentUser = userAccounts.getUser(index);
-  	float currentBalance = currentUser.getBalance();
+  	float currentBalance = Float.parseFloat(currentUser.getBalance());
 
   	// Deduct transaction fee
   	if (currentUser.getPlan() == "S") {
@@ -114,8 +114,8 @@ public class BackEnd {
   	}
 
   	// Deduct funds for withdrawal transaction to account
-  	currentBalance -= transaction.getFunds();
-  	currentUser.setBalance(currentBalance);
+  	currentBalance -= Float.parseFloat(transaction.getFunds());
+  	currentUser.setBalance(Float.toString(currentBalance));
     userAccounts.updateUser(index, currentUser);
   }
 
@@ -135,7 +135,7 @@ public class BackEnd {
   private void paybill(Transaction transaction) {
   	int index = userAccounts.getIndex(transaction.getNumber());
   	User currentUser = userAccounts.getUser(index);
-  	float currentBalance = currentUser.getBalance();
+  	float currentBalance = Float.parseFloat(currentUser.getBalance());
 
   	// Deduct transaction fee
   	if (currentUser.getPlan() == "S") {
@@ -145,8 +145,8 @@ public class BackEnd {
   	}
 
   	// Deduct funds for paybill transaction to account
-  	currentBalance -= transaction.getFunds();
-  	currentUser.setBalance(currentBalance);
+  	currentBalance -= Float.parseFloat(transaction.getFunds());
+  	currentUser.setBalance(Float.toString(currentBalance));
     userAccounts.updateUser(index, currentUser);
   }
 
@@ -157,7 +157,7 @@ public class BackEnd {
   private void deposit(Transaction transaction) {
   	int index = userAccounts.getIndex(transaction.getNumber());
   	User currentUser = userAccounts.getUser(index);
-  	float currentBalance = currentUser.getBalance();
+  	float currentBalance = Float.parseFloat(currentUser.getBalance());
 
   	// Deduct transaction fee
   	if (currentUser.getPlan() == "S") {
@@ -167,8 +167,8 @@ public class BackEnd {
   	}
 
   	// Add funds for deposit transaction to account
-  	currentBalance += transaction.getFunds();
-  	currentUser.setBalance(currentBalance);
+  	currentBalance += Float.parseFloat(transaction.getFunds());
+  	currentUser.setBalance(Float.toString(currentBalance));
     userAccounts.updateUser(index, currentUser);
   }
 
@@ -182,7 +182,7 @@ public class BackEnd {
   	newUser.setAccountNumber(transaction.getNumber()); ////////////////////////////// Is this given in the transaction file?  Or do we randomly generate it in the backend
   	newUser.setStatus("N");
   	newUser.setBalance(transaction.getFunds());
-  	userAccounts.add(newUser);
+  	userAccounts.addUser(newUser);
   }
 
   /* 
@@ -191,8 +191,7 @@ public class BackEnd {
   */
   private void delete(Transaction transaction) {
   	int index = userAccounts.getIndex(transaction.getNumber());
-  	User currentUser = userAccounts.removeUser(index);
-    userAccounts.updateUser(index, currentUser);
+  	userAccounts.removeUser(index);
   }
 
   /* 
@@ -214,7 +213,7 @@ public class BackEnd {
   private void changePlan(Transaction transaction) {
   	int index = userAccounts.getIndex(transaction.getNumber());
   	User currentUser = userAccounts.getUser(index);
-  	currentPlan = currentUser.getPlan();
+  	String currentPlan = currentUser.getPlan();
 
   	if (currentPlan == "S") {
   		currentPlan = "N";
