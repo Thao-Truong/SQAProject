@@ -83,5 +83,5 @@ public class UserAccounts {
     } catch(IOException ex) {
         System.out.println"Error writing to file '" + fileName + "'");
     }
-
+  }
 } // end class UserAccounts
