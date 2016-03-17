@@ -1,3 +1,5 @@
+/* Should take in the merged transaction file? */
+
 import java.io.*;
 
 /* Processes the transaction files and user files */
@@ -18,7 +20,7 @@ public class BackEnd {
 
   /* 
   * Constructor for BackEnd class that takes in the file names and stores them
-  * @param transactionFile - the name of the transaction file to use
+  * @param transactionFile - the name of the MERGED transaction file to use
   * @param userFile - the name of the user accounts file to use
   */
   public BackEnd(String transactionFile, String userFile) {
@@ -97,9 +99,21 @@ public class BackEnd {
 	  		}
 
 	  	}
-  	} catch (Exception E) {
-  		System.out.println("Error");
-  	}
+  	} catch (IOException e) {
+  		System.out.println("ERROR: There was an error with processing the transaction file");
+  	} 
+
+    // Generate the new currents account file
+    try {
+      //@param filename
+      //@ param fileType
+      userAccounts.writeAccounts("master_accounts.txt", "master"); //////////////////////////////////////////////////////////////////////////////// masteraccounts ame?
+      userAccounts.writeAccounts("current_accounts.txt", "current");
+    } catch (Exception e) {
+      System.out.println("ERROR: Error");
+    }
+
+    // Generate the new master accounts file
   }
 
   /* 
@@ -324,10 +338,10 @@ public class BackEnd {
 
       fr = new FileReader(file);
     } catch (FileNotFoundException e) {
-      	
+      System.out.println("ERROR: " + fileName + "was not found");
       	// Err file not found message
     } catch(IOException e) {
-      	// Err Reading file
+      	System.out.println("ERROR: There was an error processing the transactions");
     }
     //Return fileReader
     return fr;
