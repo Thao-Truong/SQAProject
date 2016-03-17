@@ -7,10 +7,6 @@ public class UserAccounts {
   private ArrayList<User> userAccounts;
 
   public UserAccounts() {
-
-  }
-
-  public UserAccounts() {
     userAccounts = new ArrayList<User>(); 
   }
   public UserAccounts(String fileName) {
@@ -89,7 +85,7 @@ public class UserAccounts {
       }
       bufferedWriter.close();
     } catch(IOException ex) {
-        System.out.println"Error writing to file '" + fileName + "'");
+        System.out.println("Error writing to file '" + fileName + "'");
     }
   }
 } // end class UserAccounts
