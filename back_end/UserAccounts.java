@@ -52,10 +52,10 @@ public class UserAccounts {
   }
 
   public void addUser(User user) {
-    userAcounts.add(user);
+    userAccounts.add(user);
   }
 
-  public removeUser(int index) {
+  public void removeUser(int index) {
     userAccounts.remove(index);
   }
   
