@@ -7,8 +7,11 @@ public class User {
   private String accountNumber;
   private String status;
   private String balance;
-  
+  private String plan;
 
+  public User() {
+    
+  }
   // Constructor
   // Read in line and parse it to store appropriate data
   public User(String userLine) {
@@ -34,6 +37,10 @@ public class User {
     return balance;
   }
   
+  public String getPlan() {
+     return plan;
+  }
+  
   public void setUserName(String userName) {
     this.userName = userName;
   }
@@ -50,9 +57,13 @@ public class User {
     this.balance = balance;
   }
   
+  public void setPlan(String plan) {
+    this.plan = plan;
+  }
+  
   // Format this user data to be written to file
   public String userAccountOuput() {
-    return accountNumber + " " + userName + " " + status + " " + balance;
+    return accountNumber + " " + userName + " " + status + " " + balance + " " + plan;
 
   }
 

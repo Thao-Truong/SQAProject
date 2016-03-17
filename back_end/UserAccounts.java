@@ -7,10 +7,6 @@ public class UserAccounts {
   private ArrayList<User> userAccounts;
 
   public UserAccounts() {
-
-  }
-
-  public UserAccounts() {
     userAccounts = new ArrayList<User>(); 
   }
   public UserAccounts(String fileName) {
