@@ -134,7 +134,7 @@ public class BackEnd {
     User currentUser = userAccounts.getUser(index);
     float currentBalance = Float.parseFloat(currentUser.getBalance());
 
-    if (transferCheck == false) {} 
+    if (transferCheck == false) {
       // Deduct transaction fee
       if (currentUser.getPlan() == "S") {
         currentBalance -= 0.05;
@@ -165,20 +165,25 @@ public class BackEnd {
   */
   private void paybill(Transaction transaction) {
   	int index = userAccounts.getIndex(transaction.getNumber());
-  	User currentUser = userAccounts.getUser(index);
-  	float currentBalance = Float.parseFloat(currentUser.getBalance());
 
-  	// Deduct transaction fee
-  	if (currentUser.getPlan() == "S") {
-  		currentBalance -= 0.05;
-  	} else if (currentUser.getPlan() == "N") {
-  		currentBalance -= 0.10;
-  	}
+    if (index == -1) {
+      System.out.println("ERROR: Account not found");
+    } else {
+    	User currentUser = userAccounts.getUser(index);
+    	float currentBalance = Float.parseFloat(currentUser.getBalance());
 
-  	// Deduct funds for paybill transaction to account
-  	currentBalance -= Float.parseFloat(transaction.getFunds());
-  	currentUser.setBalance(Float.toString(currentBalance));
-    userAccounts.updateUser(index, currentUser);
+    	// Deduct transaction fee
+    	if (currentUser.getPlan() == "S") {
+    		currentBalance -= 0.05;
+    	} else if (currentUser.getPlan() == "N") {
+    		currentBalance -= 0.10;
+    	}
+
+    	// Deduct funds for paybill transaction to account
+    	currentBalance -= Float.parseFloat(transaction.getFunds());
+    	currentUser.setBalance(Float.toString(currentBalance));
+      userAccounts.updateUser(index, currentUser);
+    }
   }
 
   /* 
@@ -187,20 +192,25 @@ public class BackEnd {
   */
   private void deposit(Transaction transaction) {
   	int index = userAccounts.getIndex(transaction.getNumber());
-  	User currentUser = userAccounts.getUser(index);
-  	float currentBalance = Float.parseFloat(currentUser.getBalance());
 
-  	// Deduct transaction fee
-  	if (currentUser.getPlan() == "S") {
-  		currentBalance -= 0.05;
-  	} else if (currentUser.getPlan() == "N") {
-  		currentBalance -= 0.10;
-  	}
+    if (index == -1) {
+      System.out.println("ERROR: Account not found");
+    } else {
+    	User currentUser = userAccounts.getUser(index);
+    	float currentBalance = Float.parseFloat(currentUser.getBalance());
 
-  	// Add funds for deposit transaction to account
-  	currentBalance += Float.parseFloat(transaction.getFunds());
-  	currentUser.setBalance(Float.toString(currentBalance));
-    userAccounts.updateUser(index, currentUser);
+    	// Deduct transaction fee
+    	if (currentUser.getPlan() == "S") {
+    		currentBalance -= 0.05;
+    	} else if (currentUser.getPlan() == "N") {
+    		currentBalance -= 0.10;
+    	}
+
+    	// Add funds for deposit transaction to account
+    	currentBalance += Float.parseFloat(transaction.getFunds());
+    	currentUser.setBalance(Float.toString(currentBalance));
+      userAccounts.updateUser(index, currentUser);
+    }
   }
 
   /* 
@@ -222,7 +232,11 @@ public class BackEnd {
   */
   private void delete(Transaction transaction) {
   	int index = userAccounts.getIndex(transaction.getNumber());
-  	userAccounts.removeUser(index);
+    if (index == -1) {
+      System.out.println("ERROR: Account not found");
+    } else {
+    	userAccounts.removeUser(index);
+    }
   }
 
   /* 
@@ -231,10 +245,16 @@ public class BackEnd {
   */
   private void disable(Transaction transaction) {
   	int index = userAccounts.getIndex(transaction.getNumber());
-  	User currentUser = userAccounts.getUser(index);
 
-  	currentUser.setStatus("D");
-    userAccounts.updateUser(index, currentUser);
+    if (index == -1) {
+      System.out.println("ERROR: Account not found");
+      } else {
+
+    	User currentUser = userAccounts.getUser(index);
+
+    	currentUser.setStatus("D");
+      userAccounts.updateUser(index, currentUser);
+    }
   }
 
   /* 
@@ -243,17 +263,22 @@ public class BackEnd {
   */
   private void changePlan(Transaction transaction) {
   	int index = userAccounts.getIndex(transaction.getNumber());
-  	User currentUser = userAccounts.getUser(index);
-  	String currentPlan = currentUser.getPlan();
 
-  	if (currentPlan == "S") {
-  		currentPlan = "N";
-  	} else if (currentPlan == "N") {
-  		currentPlan = "S";
-  	}
+    if (index == -1) {
+      System.out.println("ERROR: Account not found");
+      } else {
+    	User currentUser = userAccounts.getUser(index);
+    	String currentPlan = currentUser.getPlan();
 
-  	currentUser.setPlan(currentPlan);
-    userAccounts.updateUser(index, currentUser);
+    	if (currentPlan == "S") {
+    		currentPlan = "N";
+    	} else if (currentPlan == "N") {
+    		currentPlan = "S";
+    	}
+
+    	currentUser.setPlan(currentPlan);
+      userAccounts.updateUser(index, currentUser);
+     } 
   }
 
   /* 
@@ -262,10 +287,14 @@ public class BackEnd {
   */
   private void enable(Transaction transaction) {
   	int index = userAccounts.getIndex(transaction.getNumber());
-  	User currentUser = userAccounts.getUser(index);
+    if (index == -1) {
+      System.out.println("ERROR: Account not found");
+    } else {
+  	 User currentUser = userAccounts.getUser(index);
 
-  	currentUser.setStatus("A");
-    userAccounts.updateUser(index, currentUser);
+    	currentUser.setStatus("A");
+      userAccounts.updateUser(index, currentUser);  
+    }
   }
 
   /* 

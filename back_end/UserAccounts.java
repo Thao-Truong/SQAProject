@@ -21,34 +21,32 @@ public class UserAccounts {
       }
 
       FileReader fileReader = new FileReader(file);
+
+      BufferedReader br = new BufferedReader(fileReader);
+      String accountLine;
+
+      // Read in each Account line
+      while ((accountLine = br.readLine()) != null) {
+        // Get Account Data
+        String currentAccount = accountLine;
+        User user = new User(currentAccount);
+        if (user.getUserName() == "END_OF_FILE         ") {
+          break;
+        }
+        userAccounts.add(user);
+      }
+
+
     } catch (FileNotFoundException e) {
       	
       	// Err file not found message
     } catch(IOException e) {
       	// Err Reading file
     }
-    try {
-	  	BufferedReader br = new BufferedReader(fileReader);
-	  	String accountLine;
-
-	  	// Read in each Account line
-	  	while ((accountLine = br.readLine()) != null) {
-	  		// Get Account Data
-	  		String currentAccount = accountLine;
-        User user = new User(currentAccount);
-        if (user.getAccountName == "END_OF_FILE         ") {
-          break;
-        }
-        userAccounts.add(user);
-      }
-
-      } catch (Exception E) {
-  		System.out.println("Error");
-      }          
   }  // end constructor  
   
   public User getUser(int index) {
-    return userAccounts.get(i);
+    return userAccounts.get(index);
   }
 
   public void addUser(User user) {
@@ -63,16 +61,18 @@ public class UserAccounts {
     return userAccounts.size();
   }
  
-  public int getIndex(string accountNumber) {
+  public int getIndex(String accountNumber) {
+    int result = -1;
     for (int i = 0; i < userAccounts.size(); i++) {
-      if (userAccounts.get(i).getAccountNumber == accountNumber) {
-        return i;
+      if (userAccounts.get(i).getAccountNumber() == accountNumber) {
+        result = i;
       }
     }
+    return result;
   }
 
   public void updateUser(int index, User currentUser) {
-    userAccounts.set(i, currentUser);
+    userAccounts.set(index, currentUser);
   }
 
   public void writeAccounts(String fileName) {
