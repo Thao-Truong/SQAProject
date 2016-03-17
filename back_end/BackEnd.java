@@ -4,6 +4,8 @@ import java.io.*;
 public class BackEnd {
   private String transactionFile = "transactions";
   private String userFile = "current_accounts";
+  private UserAccounts userAccounts;
+
 
   /* Constructor for BackEnd class that calls the appropriate method to begin processing the trasactions*/
   public BackEnd() {
@@ -27,7 +29,7 @@ public class BackEnd {
    */
   public void processTransactions() {
   	FileReader transactionsReader = getFile(transactionFile);
-  	// UserAccounts userAccounts = new UserAccounts(userFile);
+  	userAccounts = new UserAccounts(userFile);
 
   	try {
 	  	BufferedReader br = new BufferedReader(transactionsReader);
@@ -43,47 +45,47 @@ public class BackEnd {
 	  		switch(transaction.getCode()) {
 	  			case "01":
 	  				System.out.println(transaction.getCode());
-	  				withdrawal();
+	  				withdrawal(transaction);
 	  				break;
 	  			case "02":
 	  				System.out.println(transaction.getCode());
-	  				transfer();
+	  				transfer(transaction);
 	  				break;
 	  			case "03":
 	  				System.out.println(transaction.getCode());
-	  				paybill();
+	  				paybill(transaction);
 	  				break;
 	  			case "04":
 	  				System.out.println(transaction.getCode());
-	  				deposit();
+	  				deposit(transaction);
 	  				break;
 	  			case "05":
 	  				System.out.println(transaction.getCode());
-	  				create();
+	  				create(transaction);
 	  				break;
 	  			case "06":
 	  				System.out.println(transaction.getCode());
-	  				delete();
+	  				delete(transaction);
 	  				break;
 	  			case "07":
 	  				System.out.println(transaction.getCode());
-	  				disable();
+	  				disable(transaction);
 	  				break;
   				case "08":
 	  				System.out.println(transaction.getCode());
-	  				changePlan();
+	  				changePlan(transaction);
 	  				break;
 	  			case "09":
 	  				System.out.println(transaction.getCode());
-	  				enable();
+	  				enable(transaction);
 	  				break;
 	  			case "10":
 	  				System.out.println(transaction.getCode());
-	  				login();
+	  				login(transaction);
 	  				break;
 	  			case "00":
 	  				System.out.println(transaction.getCode());
-	  				endOfSession();
+	  				endOfSession(transaction);
 	  				break;
 	  			default:
 	  				System.out.println("Invalid input");
@@ -95,53 +97,145 @@ public class BackEnd {
   	}
   }
 
-  /*  */
-  private void withdrawal() {
+  /* 
+  * Retrieves the user data and removes specified amount from their balance
+	* @param transaction - currently being processed transaction
+  */
+  private void withdrawal(String transaction) {
+  	int index = userAccounts.getIndex(transaction.getNumber());
+  	currentUser = userAccounts.getUser(index);
+  	float currentBalance = currentUser.getBalance();
+
+  	// Deduct transaction fee
+  	if (currentUser.getPlan() == "S") {
+  		currentBalance -= 0.05;
+  	} else if (currentUser.getPlan() == "N") {
+  		currentBalance -= 0.10;
+  	}
+
+  	// Deduct funds for withdrawal transaction to account
+  	currentBalance -= transaction.getFunds();
+  	currentUser.setBalance(currentBalance);
+  }
+
+  /* 
+  * Retrieves the user data and removes the specified amount from the balance, then
+  * adds the specified amount to the specified account
+	* @param transaction - currently being processed transaction
+  */
+  private void transfer(String transaction) {
 
   }
 
-  /* */
-  private void transfer() {
+  /* 
+  * Retrieves the user data and removes specified amount from their balance to paybill
+	* @param transaction - currently being processed transaction
+  */
+  private void paybill(String transaction) {
+  	int index = userAccounts.getIndex(transaction.getNumber());
+  	currentUser = userAccounts.getUser(index);
+  	float currentBalance = currentUser.getBalance();
 
+  	// Deduct transaction fee
+  	if (currentUser.getPlan() == "S") {
+  		currentBalance -= 0.05;
+  	} else if (currentUser.getPlan() == "N") {
+  		currentBalance -= 0.10;
+  	}
+
+  	// Deduct funds for paybill transaction to account
+  	currentBalance -= transaction.getFunds();
+  	currentUser.setBalance(currentBalance);
   }
 
-  /* */
-  private void paybill() {
+  /* 
+  * Retrieves the user data and adds the specified amount to their balance
+	* @param transaction - currently being processed transaction
+  */
+  private void deposit(String transaction) {
+  	int index = userAccounts.getIndex(transaction.getNumber());
+  	currentUser = userAccounts.getUser(index);
+  	float currentBalance = currentUser.getBalance();
 
+  	// Deduct transaction fee
+  	if (currentUser.getPlan() == "S") {
+  		currentBalance -= 0.05;
+  	} else if (currentUser.getPlan() == "N") {
+  		currentBalance -= 0.10;
+  	}
+
+  	// Add funds for deposit transaction to account
+  	currentBalance += transaction.getFunds();
+  	currentUser.setBalance(currentBalance);
   }
 
-  /* */
-  private void deposit() {
-
+  /* 
+  * Creates a new user as specified by the create transaction
+	* @param transaction - currently being processed transaction
+  */
+  private void create(String transaction) {
+  	User newUser = new User();
+  	newUser.setUserName(transaction.getName());
+  	newUser.setAccountNumber(transaction.getNumber()); ////////////////////////////// Is this given in the transaction file?  Or do we randomly generate it in the backend
+  	newUser.setStatus("N");
+  	newUser.setBalance(transaction.getFunds());
+  	userAccounts.add(newUser);
   }
 
-  /* */
-  private void create() {
-
+  /* 
+  * Deletes a user as specified by the transaction
+	* @param transaction - currently being processed transaction
+  */
+  private void delete(String transaction) {
+  	int index = userAccounts.getIndex(transaction.getNumber());
+  	currentUser = userAccounts.removeUser(index);
   }
 
-  /* */
-  private void delete() {
+  /* 
+  * Retrieves the user data and sets the account to disabled
+	* @param transaction - currently being processed transaction
+  */
+  private void disable(String transaction) {
+  	int index = userAccounts.getIndex(transaction.getNumber());
+  	currentUser = userAccounts.getUser(index);
 
+  	currentUser.setStatus("D");
   }
 
-  /* */
-  private void disable() {
+  /* 
+  * Retrieves the user data and changes the plan type
+	* @param transaction - currently being processed transaction
+  */
+  private void changePlan(String transaction) {
+  	int index = userAccounts.getIndex(transaction.getNumber());
+  	currentUser = userAccounts.getUser(index);
+  	currentPlan = currentUser.getPlan();
 
+  	if (currentPlan == "S") {
+  		currentPlan = "N";
+  	} else if (currentPlan == "N") {
+  		currentPlan = "S";
+  	}
+
+  	currentUser.setPlan(currentPlan);
   }
 
-  /* */
-  private void changePlan() {
+  /* 
+  * Retrieves the user data and sets the account status to enabled
+	* @param transaction - currently being processed transaction
+  */
+  private void enable(String transaction) {
+  	int index = userAccounts.getIndex(transaction.getNumber());
+  	currentUser = userAccounts.getUser(index);
 
+  	currentUser.setStatus("A");
   }
 
-  /* */
-  private void enable() {
-
-  }
-
-  /* */
-  private void login() {
+  /* 
+  * ...
+	* @param transaction - currently being processed transaction
+  */
+  private void login(String transaction) {
 
   }
 

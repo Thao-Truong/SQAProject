@@ -8,7 +8,7 @@ public class Transaction {
 	private String code;
 	private String accountName;
 	private String accountNumber;
-	private String accountBalance;
+	private String funds;
 	private String misc;
 
 	/*
@@ -21,7 +21,7 @@ public class Transaction {
   	code = transactionLine.substring(0, 2);
   	accountName = transactionLine.substring(3, 13);
   	accountNumber = transactionLine.substring(25, 29);
-  	accountBalance = transactionLine.substring(30, 38);
+  	funds = transactionLine.substring(30, 38);
   	misc = transactionLine.substring(39, 41);
   }
 
@@ -40,9 +40,9 @@ public class Transaction {
   	return accountNumber;
   }
 
- /* @return accountBalance - returns the accountBalance that corresponds to the transaction */
-  public String getBalance(){
-  	return accountBalance;
+ /* @return funds - returns the funds that corresponds to the transaction */
+  public String getFunds(){
+  	return funds;
   }
 
  /* @return accountMisc - returns the miscallaneous data that corresponds to the transaction */
