@@ -5,7 +5,11 @@ import java.util.*;
 public class UserAccounts {
   
   private ArrayList<User> userAccounts;
-  
+
+  public UserAccounts() {
+
+  }
+
   public UserAccounts() {
     userAccounts = new ArrayList<User>(); 
   }
@@ -69,6 +73,10 @@ public class UserAccounts {
         return i;
       }
     }
+  }
+
+  public void updateUser(int index, User currentUser) {
+    userAccounts.set(i, currentUser);
   }
 
   public void writeAccounts(String fileName) {
