@@ -19,6 +19,7 @@ public class User {
     userName = userLine.substring(6, 25);
     status = userLine.substring(27, 27);
     balance = userLine.substring(29, 36);
+    plan = userLine.substring(38, 38);
   }
   
   public String getUserName() {
