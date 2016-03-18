@@ -7,6 +7,7 @@ public class BackEnd {
   private String transactionFile = "transactions";
   private String userFile = "current_accounts";
   private UserAccounts userAccounts;
+  private String sessionKind;
 
   /* if transfer transaction check that there are two */
   boolean transferCheck = false;
@@ -36,7 +37,6 @@ public class BackEnd {
   public void processTransactions() {
   	FileReader transactionsReader = getFile(transactionFile);
   	userAccounts = new UserAccounts(userFile);
-    
 
   	try {
 	  	BufferedReader br = new BufferedReader(transactionsReader);
@@ -316,7 +316,13 @@ public class BackEnd {
 	* @param transaction - currently being processed transaction
   */
   private void login(Transaction transaction) {
+    sessionKind = transaction.getMisc();
 
+    if (sessionKind == "A ") {
+      System.out.println("Its an admin session");
+    } else if (sessionKind == "S ") {
+      System.out.println("Its a standard session");
+    }
   }
 
   /* Last transaction */ 

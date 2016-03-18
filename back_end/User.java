@@ -24,7 +24,7 @@ public class User {
     status = userLine.substring(27, 27);
     balance = userLine.substring(29, 36);
     plan = userLine.substring(38, 38);
-    numTransactions = userLine.substring(40, 43);
+    numTransactions = Integer.parseInt(userLine.substring(40, 43));
   }
 
   /* Get method that returns user's name */
