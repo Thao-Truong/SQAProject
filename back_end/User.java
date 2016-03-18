@@ -8,7 +8,8 @@ public class User {
   private String status;
   private String balance;
   private String plan;
-
+  private int numTransactions = 0;
+ 
 /* no argument constructor for User class */
   public User() {
     
@@ -23,6 +24,7 @@ public class User {
     status = userLine.substring(27, 27);
     balance = userLine.substring(29, 36);
     plan = userLine.substring(38, 38);
+    numTransactions = userLine.substring(40, 43);
   }
 
   /* Get method that returns user's name */
@@ -48,6 +50,10 @@ public class User {
   /* Get method that returns the user's plan type (S = student; N = non-student) */
   public String getPlan() {
      return plan;
+  }
+
+  public int getNumTransactions() {
+     return numTransactions;
   }
 
   /* 
@@ -89,10 +95,20 @@ public class User {
   public void setPlan(String plan) {
     this.plan = plan;
   }
+
+  public void incNumTransactions() {
+    numTransactions++;
+  }
   
-  /* Formats user's data to be written to file */
+  /* Formats user's data to be written to current accounts file */
   public String userAccountOuput() {
     return accountNumber + " " + userName + " " + status + " " + balance + " " + plan;
+
+  }
+
+  /* Formats user's data to be written to the master accounts file */
+  public String masterAccountOuput() {
+    return accountNumber + " " + userName + " " + status + " " + balance + " " + plan + " " + numTransactions;
 
   }
 

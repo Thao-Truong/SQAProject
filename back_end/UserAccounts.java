@@ -104,13 +104,18 @@ public class UserAccounts {
   * Writes all the accounts stored in the arraylist to file
   * @param fileName - name of file to write accounts to
   */
-  public void writeAccounts(String fileName) {
+  public void writeAccounts(String fileName, String type) {
     try {
       FileWriter fileWriter = new FileWriter(fileName);
       BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
       for (int i = 0; i < userAccounts.size(); i++ ) {
-        bufferedWriter.write(userAccounts.get(i).userAccountOuput());
-        bufferedWriter.newLine();
+        if (type == "current") {
+          bufferedWriter.write(userAccounts.get(i).userAccountOuput());
+          bufferedWriter.newLine();
+        } else if (type == "master") {
+          bufferedWriter.write(userAccounts.get(i).masterAccountOuput());
+          bufferedWriter.newLine();
+        }
       }
       bufferedWriter.close();
     } catch(IOException ex) {
