@@ -104,6 +104,10 @@ public class UserAccounts {
   * Writes all the accounts stored in the arraylist to file
   * @param fileName - name of file to write accounts to
   */
+  public void sortAccounts() {
+    Collections.sort(userAccounts, new MyUserComp());
+  }
+
   public void writeAccounts(String fileName, String type) {
     try {
       FileWriter fileWriter = new FileWriter(fileName);
