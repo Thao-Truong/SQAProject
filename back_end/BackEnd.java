@@ -105,8 +105,8 @@ public class BackEnd {
     // Generate the new currents account file
     try {
       //@param filename
-      //@ param fileType
-      userAccounts.writeAccounts("master_accounts.txt", "master"); //////////////////////////////////////////////////////////////////////////////// masteraccounts ame?
+      //@param fileType
+      userAccounts.writeAccounts("master_accounts.txt", "master"); 
       userAccounts.writeAccounts("current_accounts.txt", "current");
     } catch (Exception e) {
       System.out.println("ERROR: Error");
