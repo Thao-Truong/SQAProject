@@ -253,7 +253,8 @@ public class BackEnd {
     String newNumber = generateNumber();
 
   	newUser.setAccountNumber(newNumber);
-  	newUser.setStatus("N");
+  	newUser.setStatus("A");
+    newUser.setPlan("N");
   	newUser.setBalance(transaction.getFunds());
   	userAccounts.addUser(newUser);
   }
