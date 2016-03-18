@@ -108,6 +108,10 @@ public class UserAccounts {
     Collections.sort(userAccounts, new MyUserComp());
   }
 
+ public void sortAccounts() {
+    Collections.sort(userAccounts, new MyUserComp());
+  }
+
   public void writeAccounts(String fileName, String type) {
     try {
       FileWriter fileWriter = new FileWriter(fileName);
