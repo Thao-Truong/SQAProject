@@ -33,7 +33,7 @@ public class UserAccounts {
         /* Get account data */
         String currentAccount = accountLine;
         User user = new User(currentAccount);
-        if (user.getUserName() == "END_OF_FILE         ") {
+        if (user.getUserName().equals("END OF FILE         ")) {
           break;
         }
         userAccounts.add(user);
@@ -112,13 +112,14 @@ public class UserAccounts {
   */
   public void writeAccounts(String fileName, String type) {
     try {
+      sortAccounts();
       FileWriter fileWriter = new FileWriter(fileName);
       BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
       for (int i = 0; i < userAccounts.size(); i++ ) {
-        if (type == "current") {
+        if (type.equals("current")) {
           bufferedWriter.write(userAccounts.get(i).userAccountOuput());
           bufferedWriter.newLine();
-        } else if (type == "master") {
+        } else if (type.equals("master")) {
           bufferedWriter.write(userAccounts.get(i).masterAccountOuput());
           bufferedWriter.newLine();
         }
