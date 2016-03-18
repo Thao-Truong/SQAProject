@@ -124,6 +124,10 @@ public class UserAccounts {
           bufferedWriter.newLine();
         }
       }
+      if (type.equals("current")) {
+        bufferedWriter.write("00000 END OF FILE            00000.00  ");
+        bufferedWriter.newLine();
+      }
       bufferedWriter.close();
     } catch(IOException ex) {
         System.out.println("Error writing to file '" + fileName + "'");
