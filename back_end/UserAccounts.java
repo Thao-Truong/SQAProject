@@ -16,6 +16,7 @@ public class UserAccounts {
   * @param fileName - name of accounts file
   */
   public UserAccounts(String fileName) {
+    userAccounts = new ArrayList<User>(); 
     try {
       File file = new File(fileName);
       if (!file.exists()) {
@@ -84,7 +85,7 @@ public class UserAccounts {
   public int getIndex(String accountNumber) {
     int result = -1;
     for (int i = 0; i < userAccounts.size(); i++) {
-      if (userAccounts.get(i).getAccountNumber() == accountNumber) {
+      if (userAccounts.get(i).getAccountNumber().equals(accountNumber)) {
         result = i;
       }
     }

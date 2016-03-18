@@ -50,47 +50,47 @@ public class BackEnd {
 
 	  		switch(transaction.getCode()) {
 	  			case "01":
-	  				System.out.println(transaction.getCode());
+	  				// System.out.println(transaction.getCode());
 	  				withdrawal(transaction);
 	  				break;
 	  			case "02":
-	  				System.out.println(transaction.getCode());
+	  				// System.out.println(transaction.getCode());
 	  				transfer(transaction);
 	  				break;
 	  			case "03":
-	  				System.out.println(transaction.getCode());
+	  				// System.out.println(transaction.getCode());
 	  				paybill(transaction);
 	  				break;
 	  			case "04":
-	  				System.out.println(transaction.getCode());
+	  				// System.out.println(transaction.getCode());
 	  				deposit(transaction);
 	  				break;
 	  			case "05":
-	  				System.out.println(transaction.getCode());
+	  				// System.out.println(transaction.getCode());
 	  				create(transaction);
 	  				break;
 	  			case "06":
-	  				System.out.println(transaction.getCode());
+	  				// System.out.println(transaction.getCode());
 	  				delete(transaction);
 	  				break;
 	  			case "07":
-	  				System.out.println(transaction.getCode());
+	  				// System.out.println(transaction.getCode());
 	  				disable(transaction);
 	  				break;
   				case "08":
-	  				System.out.println(transaction.getCode());
+	  				// System.out.println(transaction.getCode());
 	  				changePlan(transaction);
 	  				break;
 	  			case "09":
-	  				System.out.println(transaction.getCode());
+	  				// System.out.println(transaction.getCode());
 	  				enable(transaction);
 	  				break;
 	  			case "10":
-	  				System.out.println(transaction.getCode());
+	  				// System.out.println(transaction.getCode());
 	  				login(transaction);
 	  				break;
 	  			case "00":
-	  				System.out.println(transaction.getCode());
+	  				// System.out.println(transaction.getCode());
 	  				endOfSession(transaction);
 	  				break;
 	  			default:
@@ -388,7 +388,7 @@ public class BackEnd {
 
     for (int i = 0; i < userAccounts.userCount(); i++) {
       if (result == userAccounts.getUser(i).getAccountNumber()) {
-        result = generateNumber;
+        result = generateNumber();
       }
     }
 

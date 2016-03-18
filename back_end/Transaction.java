@@ -19,8 +19,8 @@ public class Transaction {
 	*/
   public Transaction (String transactionLine){
   	code = transactionLine.substring(0, 2);
-  	accountName = transactionLine.substring(3, 13);
-  	accountNumber = transactionLine.substring(25, 29);
+  	accountName = transactionLine.substring(3, 23);
+  	accountNumber = transactionLine.substring(24, 29);
   	funds = transactionLine.substring(30, 38);
   	misc = transactionLine.substring(39, 41);
   }
