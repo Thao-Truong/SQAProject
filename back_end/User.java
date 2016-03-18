@@ -96,8 +96,10 @@ public class User {
     this.plan = plan;
   }
 
-  public void incNumTransactions() {
-    numTransactions++;
+  public void incNumTransactions(String sessionKind) {
+    if (sessionKind == "S ") {
+      numTransactions++;
+    }
   }
   
   /* Formats user's data to be written to current accounts file */

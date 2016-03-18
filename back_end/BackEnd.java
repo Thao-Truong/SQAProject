@@ -1,6 +1,5 @@
-/* Should take in the merged transaction file? */
-
 import java.io.*;
+import java.util.Random;
 
 /* Processes the transaction files and user files */
 public class BackEnd {
@@ -22,7 +21,7 @@ public class BackEnd {
   /* 
   * Constructor for BackEnd class that takes in the file names and stores them
   * @param transactionFile - the name of the MERGED transaction file to use
-  * @param userFile - the name of the user accounts file to use
+  * @param userFile - the name of the masterAccounts file to use
   */
   public BackEnd(String transactionFile, String userFile) {
     this.transactionFile = transactionFile;
@@ -132,7 +131,10 @@ public class BackEnd {
   		currentBalance -= 0.10;
   	}
 
-  	// Deduct funds for withdrawal transaction to account
+    /* Increment the number of user transactions if necessary */
+    currentUser.incNumTransactions(sessionKind);
+
+  	/* Deduct funds for withdrawal transaction to account */
   	currentBalance -= Float.parseFloat(transaction.getFunds());
   	currentUser.setBalance(Float.toString(currentBalance));
     userAccounts.updateUser(index, currentUser);
@@ -160,6 +162,10 @@ public class BackEnd {
       // Deduct funds for transfer transaction 
       currentBalance -= Float.parseFloat(transaction.getFunds());
       currentUser.setBalance(Float.toString(currentBalance));
+
+      /* Increment the number of user transactions if necessary */
+      currentUser.incNumTransactions(sessionKind);
+
       userAccounts.updateUser(index, currentUser);
 
       transferCheck = true;
@@ -196,6 +202,10 @@ public class BackEnd {
     	// Deduct funds for paybill transaction to account
     	currentBalance -= Float.parseFloat(transaction.getFunds());
     	currentUser.setBalance(Float.toString(currentBalance));
+
+      /* Increment the number of user transactions if necessary */
+      currentUser.incNumTransactions(sessionKind);
+
       userAccounts.updateUser(index, currentUser);
     }
   }
@@ -223,6 +233,10 @@ public class BackEnd {
     	// Add funds for deposit transaction to account
     	currentBalance += Float.parseFloat(transaction.getFunds());
     	currentUser.setBalance(Float.toString(currentBalance));
+
+      /* Increment the number of user transactions if necessary */
+      currentUser.incNumTransactions(sessionKind);
+
       userAccounts.updateUser(index, currentUser);
     }
   }
@@ -234,7 +248,11 @@ public class BackEnd {
   private void create(Transaction transaction) {
   	User newUser = new User();
   	newUser.setUserName(transaction.getName());
-  	newUser.setAccountNumber(transaction.getNumber()); ////////////////////////////// Is this given in the transaction file?  Or do we randomly generate it in the backend
+
+    /* Generate an account number */
+    String newNumber = generateNumber();
+
+  	newUser.setAccountNumber(newNumber);
   	newUser.setStatus("N");
   	newUser.setBalance(transaction.getFunds());
   	userAccounts.addUser(newUser);
@@ -327,7 +345,7 @@ public class BackEnd {
 
   /* Last transaction */ 
   private void endOfSession(Transaction transaction) {
-
+    sessionKind  = "";
   }
 
 	
@@ -352,6 +370,32 @@ public class BackEnd {
     //Return fileReader
     return fr;
   }
+
+  /* 
+  * Generates an account number and recursively checks if it's unique
+  */
+  private String generateNumber() {
+    String result;
+
+    /* random number from 1 to 99999 */
+    Random rand = new Random();
+    int num = rand.nextInt(99999) + 1;
+    result = Integer.toString(num);
+    
+    for (int i = result.length(); i < 5; i++) {
+      result = " " + result;
+    }
+
+    for (int i = 0; i < userAccounts.userCount(); i++) {
+      if (result == userAccounts.getUser(i).getAccountNumber()) {
+        result = generateNumber;
+      }
+    }
+
+    return result;
+  }
+
+
 
   /* Initializes Backend to begin processing the transactions*/
   public static void main(String[] args) {
