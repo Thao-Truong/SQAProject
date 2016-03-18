@@ -32,7 +32,7 @@ public class UserAccounts {
       while ((accountLine = br.readLine()) != null) {
         /* Get account data */
         String currentAccount = accountLine;
-        User user = new User(currentAccount);
+        User user = new User(currentAccount);     
         if (user.getUserName().equals("END OF FILE         ")) {
           break;
         }

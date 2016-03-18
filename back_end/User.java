@@ -20,11 +20,11 @@ public class User {
   */
   public User(String userLine) {
     accountNumber = userLine.substring(0, 5);
-    userName = userLine.substring(6, 25);
-    status = userLine.substring(27, 27);
-    balance = userLine.substring(29, 36);
-    plan = userLine.substring(38, 38);
-    numTransactions = Integer.parseInt(userLine.substring(40, 43));
+    userName = userLine.substring(6, 26);
+    status = userLine.substring(27, 28);
+    balance = userLine.substring(29, 37);
+    plan = userLine.substring(38, 39);
+    numTransactions = Integer.parseInt(userLine.substring(40, 44));
   }
 
   /* Get method that returns user's name */
@@ -97,7 +97,7 @@ public class User {
   }
 
   public void incNumTransactions(String sessionKind) {
-    if (sessionKind == "S ") {
+    if (sessionKind.equals("S ")) {
       numTransactions++;
     }
   }
@@ -110,7 +110,12 @@ public class User {
 
   /* Formats user's data to be written to the master accounts file */
   public String masterAccountOuput() {
-    return accountNumber + " " + userName + " " + status + " " + balance + " " + plan + " " + numTransactions;
+    String numTrans;
+    numTrans = Integer.toString(numTransactions);
+    for (int i = numTrans.length(); i < 4; i++) {
+      numTrans = "0" + numTrans;
+    }
+    return accountNumber + " " + userName + " " + status + " " + balance + " " + plan + " " + numTrans;
 
   }
 
