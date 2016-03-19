@@ -133,14 +133,19 @@ public class BackEnd {
   		currentBalance -= 0.10;
   	}
 
-    /* Increment the number of user transactions if necessary */
-    currentUser.incNumTransactions(sessionKind);
+    /* Deduct funds for withdrawal transaction to account */
+      currentBalance -= Float.parseFloat(transaction.getFunds());
 
-  	/* Deduct funds for withdrawal transaction to account */
-  	currentBalance -= Float.parseFloat(transaction.getFunds());
-    /* TO_DO:  need to format above float to 2 decimals */
-  	currentUser.setBalance(Float.toString(currentBalance));
-    userAccounts.updateUser(index, currentUser);
+    if (currentBalance < 0) {
+      System.out.println("ERROR: negative balance invalid");
+    } else {
+      /* Increment the number of user transactions if necessary */
+      currentUser.incNumTransactions(sessionKind);
+
+      /* TO_DO:  need to format above float to 2 decimals */
+    	currentUser.setBalance(Float.toString(currentBalance));
+      userAccounts.updateUser(index, currentUser);
+    }
   }
 
   /* 
@@ -161,17 +166,21 @@ public class BackEnd {
         currentBalance -= 0.10;
       }
 
-
       // Deduct funds for transfer transaction 
       currentBalance -= Float.parseFloat(transaction.getFunds());
-      currentUser.setBalance(Float.toString(currentBalance));
 
-      /* Increment the number of user transactions if necessary */
-      currentUser.incNumTransactions(sessionKind);
+      if (currentBalance < 0) {
+        System.out.println("ERROR: negative balance invalid");
+      } else {
+        /* Increment the number of user transactions if necessary */
+        currentUser.incNumTransactions(sessionKind);
 
-      userAccounts.updateUser(index, currentUser);
+        /* TO_DO:  need to format above float to 2 decimals */
+        currentUser.setBalance(Float.toString(currentBalance));
+        userAccounts.updateUser(index, currentUser);
+        transferCheck = true;
+      }
 
-      transferCheck = true;
     } else {
       // Add funds for transfer transaction 
       currentBalance += Float.parseFloat(transaction.getFunds());
@@ -204,12 +213,17 @@ public class BackEnd {
 
     	// Deduct funds for paybill transaction to account
     	currentBalance -= Float.parseFloat(transaction.getFunds());
-    	currentUser.setBalance(Float.toString(currentBalance));
 
-      /* Increment the number of user transactions if necessary */
-      currentUser.incNumTransactions(sessionKind);
+      if (currentBalance < 0) {
+        System.out.println("ERROR: negative balance invalid");
+      } else {
+        /* Increment the number of user transactions if necessary */
+        currentUser.incNumTransactions(sessionKind);
 
-      userAccounts.updateUser(index, currentUser);
+        /* TO_DO:  need to format above float to 2 decimals */
+        currentUser.setBalance(Float.toString(currentBalance));
+        userAccounts.updateUser(index, currentUser);
+      }
     }
   }
 
@@ -235,12 +249,18 @@ public class BackEnd {
 
     	// Add funds for deposit transaction to account
     	currentBalance += Float.parseFloat(transaction.getFunds());
-    	currentUser.setBalance(Float.toString(currentBalance));
 
-      /* Increment the number of user transactions if necessary */
-      currentUser.incNumTransactions(sessionKind);
+      if (currentBalance < 0) {
+        System.out.println("ERROR: negative balance invalid");
+      } else {
+        /* Increment the number of user transactions if necessary */
+        currentUser.incNumTransactions(sessionKind);
 
-      userAccounts.updateUser(index, currentUser);
+        /* TO_DO:  need to format above float to 2 decimals */
+        currentUser.setBalance(Float.toString(currentBalance));
+        userAccounts.updateUser(index, currentUser);
+        transferCheck = true;
+      }
     }
   }
 
@@ -255,11 +275,15 @@ public class BackEnd {
     /* Generate an account number */
     String newNumber = generateNumber();
 
-  	newUser.setAccountNumber(newNumber);
-  	newUser.setStatus("A");
-    newUser.setPlan("N");
-  	newUser.setBalance(transaction.getFunds());
-  	userAccounts.addUser(newUser);
+    if (Integer.parseInt(transaction.getFunds()) < 0){
+      System.out.println("ERROR: funds invalid");
+    } else {
+    	newUser.setAccountNumber(newNumber);
+    	newUser.setStatus("A");
+      newUser.setPlan("N");
+    	newUser.setBalance(transaction.getFunds());
+    	userAccounts.addUser(newUser);
+    }
   }
 
   /* 
