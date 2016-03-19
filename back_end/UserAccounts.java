@@ -1,7 +1,7 @@
 import java.io.*;
 import java.util.*;
 
-/* UserAccounts class stores all user accounts */
+/* UserAccounts class stores all user accounts in an arraylist. */
 public class UserAccounts {
   
   private ArrayList<User> userAccounts;

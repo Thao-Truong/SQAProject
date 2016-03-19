@@ -1,7 +1,9 @@
 import java.io.*;
 import java.util.Random;
 
-/* Processes the transaction files and user files */
+/* Class BackEnd takes as inputs the merged transaction file and master accounts file
+* and generates the new master accounts file and current accounts file.
+*/
 public class BackEnd {
   private String transactionFile = "transactions";
   private String userFile = "current_accounts";
@@ -136,6 +138,7 @@ public class BackEnd {
 
   	/* Deduct funds for withdrawal transaction to account */
   	currentBalance -= Float.parseFloat(transaction.getFunds());
+    /* TO_DO:  need to format above float to 2 decimals */
   	currentUser.setBalance(Float.toString(currentBalance));
     userAccounts.updateUser(index, currentUser);
   }

@@ -1,6 +1,6 @@
 import java.io.*;
 
-/* User class stores info about each user's account */
+/* User class stores info about each user's account in a User object */
 public class User {
   
   private String userName;
