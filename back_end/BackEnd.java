@@ -423,7 +423,9 @@ public class BackEnd {
     return result;
   }
 
-
+  public UserAccounts getUserAccounts() {
+    return userAccounts;
+  }
 
   /* Initializes Backend to begin processing the transactions*/
   public static void main(String[] args) {
