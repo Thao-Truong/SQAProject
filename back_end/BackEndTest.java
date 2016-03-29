@@ -3,6 +3,17 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 
 public class BackEndTest {
+  
+  @Test
+  public void testWithdrawalStudent() {
+    BackEnd tester = new BackEnd("transaction_withdrawal", "currrent_accounts_withdrawal");
+    FileReader fr = new FileReader("master_accounts.txt");
+    BufferedReader br = new BufferedReader(fr);
+    String accountsLine = br.readLine();
+    assertEquals("Failure...amounts are not equal", "00060.00", accountsLine.substring(29, 37));
+    accountsLine = br.readLine();
+    assertEquals("Failure...amounts are not equal", "00500.00", accountsLine.substring(29, 37));
+  }
 
 	@Test
     public void testBackEndEmpty() {
