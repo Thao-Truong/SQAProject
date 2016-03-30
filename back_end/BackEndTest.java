@@ -20,16 +20,16 @@ public class BackEndTest {
 	
 	@Test
   public void testWithdrawalStudent() {
-    String[] testTransaction = newString[] {
+    String[] testTransaction = new String[] {
     	"10 Emily Wilson         00000 00000.00 S ", 
 			"01 Emily Wilson         00020 00500.00   ",
 			"00 Emily Wilson         00000 00000.00   "
-    }
+    };
 
-    initializeTest(testTransaction);
+    initializeTest(testTransaction, "mergedTransactioin.txt", "masterAccount.txt");
 
     try {
-    	int userIndexChanged = backend.getUserAccounts().getIndex(00010);
+    	int userIndexChanged = backend.getUserAccounts().getIndex(00020);
     	String balance = backend.getUserAccounts().getUser(userIndexChanged).getBalance();
     	Assert.assertEquals("Test failed - WithdrawalStudent", 00500.00, balance);
     } catch() {
@@ -41,18 +41,18 @@ public class BackEndTest {
   // Tests statement coverage for Withdrawal, making sure to hit the statments with a nonstudent plan and balance > 0
 	@Test
   public void testWithdrawalNonStudent() {
-    String[] testTransaction = newString[] {
+    String[] testTransaction = new String[] {
     	"10 Mark Stone           00000 00000.00 S ", 
-			"01 Mark Stone           00010 00100.00   ",
+			"01 Mark Stone           00010 00020.00   ",
 			"00 Mark Stone           00000 00000.00   "
-    }
+    };
 
-    initializeTest(testTransaction);
+    initializeTest(testTransaction, "mergedTransaction.txt", "masterAccount.txt");
 
     try {
     	int userIndexChanged = backend.getUserAccounts().getIndex(00010);
     	String balance = backend.getUserAccounts().getUser(userIndexChanged).getBalance();
-    	Assert.assertEquals("Test failed - WithdrawalNonStudent", 00400.00, balance);
+    	Assert.assertEquals("Test failed - WithdrawalNonStudent", 00080.00, balance);
     } catch() {
     	System.out.println("Test Fail");
     }
@@ -61,56 +61,146 @@ public class BackEndTest {
 
 	@Test
   public void testTransferStudent() {
-    fail("Not yet implemented");
+    String[] testTransaction = new String[] {
+    	"10 Emily Wilson         00000 00000.00 S ", 
+			"02 Emily Wilson         00020 00100.00   ",
+			"00 Emily Wilson         00000 00000.00   ",
+      "10 Mark Stone           00000 00000.00 S ",
+      "02 Mark Stone           00010 00100.00   ",
+      "10 Mark Stone           00000 00000.00   "
+    };
   }
+  initializeTest(testTransaction, "mergedTransaction.txt", "masterAccount.txt");
+
+    try {
+    	int userIndexChanged = backend.getUserAccounts().getIndex(00020);
+    	String balance = backend.getUserAccounts().getUser(userIndexChanged).getBalance();
+    	Assert.assertEquals("Test failed - TransferStudent", 00400.00, balance);
+    } catch() {
+    	System.out.println("Test Fail");
+    }
 
 	@Test
   public void testTransferNonStudent() {
-    fail("Not yet implemented");
+  String[] testTransaction = new String[] {
+      "10 Mark Stone           00000 00000.00 S ",
+      "02 Mark Stone           00010 00200.00   ",
+      "10 Mark Stone           00000 00000.00   ",
+      "10 Emily Wilson         00000 00000.00 S ", 
+			"02 Emily Wilson         00020 00200.00   ",
+			"00 Emily Wilson         00000 00000.00   ",
+		  
+    };
+  }  
+  initializeTest(testTransaction, "mergedTransaction.txt", "masterAccount.txt");
+
+    try {
+    	int userIndexChanged = backend.getUserAccounts().getIndex(00010);
+    	String balance = backend.getUserAccounts().getUser(userIndexChanged).getBalance();
+    	Assert.assertEquals("Test failed - TransferNonStudent", 00100.00, balance);
+    } catch() {
+    	System.out.println("Test Fail");
+    } 
   }
 
 	@Test
   public void testPaybillStudent() {
-    fail("Not yet implemented");
+     String[] testTransaction = new String[] {
+    	"10 Emily Wilson         00000 00000.00 S ", 
+			"03 Emily Wilson         00020 00150.00   ",
+			"00 Emily Wilson         00000 00000.00   "
+    };
+
+    initializeTest(testTransaction, "mergedTransaction.txt", "masterAccount.txt");
+
+    try {
+    	int userIndexChanged = backend.getUserAccounts().getIndex(00020);
+    	String balance = backend.getUserAccounts().getUser(userIndexChanged).getBalance();
+    	Assert.assertEquals("Test failed - PayBillStudent", 00350.00, balance);
+    } catch() {
+    	System.out.println("Test Fail");
+    }
   }
 
 	@Test
   public void testPaybillNonStudent() {
-    fail("Not yet implemented");
+    String[] testTransaction = new String[] {
+    	"10 Mark Stone           00000 00000.00 S ", 
+			"03 Mark Stone           00020 00350.00   ",
+			"00 Mark Stone           00000 00000.00   "
+    };
+
+    initializeTest(testTransaction, "mergedTransaction.txt", "masterAccount.txt");
+
+    try {
+    	int userIndexChanged = backend.getUserAccounts().getIndex(00010);
+    	String balance = backend.getUserAccounts().getUser(userIndexChanged).getBalance();
+    	Assert.assertEquals("Test failed - PayBillNonStudent", 00100.00, balance);
+    } catch() {
+    	System.out.println("Test Fail");
+    }
   }
 
 	@Test
-  public void tesDepositStudent() {
-    fail("Not yet implemented");
+  public void testDepositStudent() {
+    String[] testTransaction = new String[] {
+    	"10 Emily Wilson         00000 00000.00 S ", 
+			"04 Emily Wilson         00020 00200.00   ",
+			"00 Emily Wilson         00000 00000.00   "
+    };
+
+    initializeTest(testTransaction, "mergedTransaction.txt", "masterAccount.txt");
+
+    try {
+    	int userIndexChanged = backend.getUserAccounts().getIndex(00020);
+    	String balance = backend.getUserAccounts().getUser(userIndexChanged).getBalance();
+    	Assert.assertEquals("Test failed - DepositStudent", 00700.00, balance);
+    } catch() {
+    	System.out.println("Test Fail");
+    }
   }
 
 	@Test
   public void testDepositNonStudent() {
-    fail("Not yet implemented");
+    String[] testTransaction = new String[] {
+    	"10 Mark Stone           00000 00000.00 S ", 
+			"04 Mark Stone           00010 00050.00   ",
+			"00 Mark Stone           00000 00000.00   "
+    };
+
+    initializeTest(testTransaction, "mergedTransaction.txt", "masterAccount.txt");
+
+    try {
+    	int userIndexChanged = backend.getUserAccounts().getIndex(00010);
+    	String balance = backend.getUserAccounts().getUser(userIndexChanged).getBalance();
+    	Assert.assertEquals("Test failed - DepositNonStudent", 00150.00, balance);
+    } catch() {
+    	System.out.println("Test Fail");
+    }
   }
 
 	@Test
-  public void testCreate() {
-    fail("Not yet implemented");
+  public void testCreate() {   //not sure how to do the test for this, going home...will try at home...
+    
   }
 
 	@Test
   public void testDelete() {
+    fail("Not yet implemented");  //not sure how to do the test for this
+  }
+
+	@Test
+  public void testDisable() {       //not sure how to do the test for this
     fail("Not yet implemented");
   }
 
 	@Test
-  public void testDisable() {
+  public void testChangePlanStudent() {  //not sure how to do the test for this
     fail("Not yet implemented");
   }
 
 	@Test
-  public void testChangePlanStudent() {
-    fail("Not yet implemented");
-  }
-
-	@Test
-  public void testChangePlanNonStudent() {
+  public void testChangePlanNonStudent() { //up to here
     fail("Not yet implemented");
   }
 
@@ -213,7 +303,7 @@ public class BackEndTest {
       e.printStackTrace();
     }
     
-    BackEnd = new Backend("mergedTransactions.txt", "maserAccounts.txt");
+    BackEnd = new Backend("mergedTransactions.txt", "masterAccounts.txt");
 
   }
 
