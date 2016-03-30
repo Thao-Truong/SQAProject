@@ -189,32 +189,102 @@ public class BackEndTest {
 
   // In the processTransactions method, test the created account plan is NonStudent and has a balance > 0
 	@Test
-  public void testCreate() {   //not sure how to do the test for this, going home...will try at home...
-    
+  public void testCreate() {  
+    String[] testTransaction = new String[] {
+    	"10                      00000 00000.00 A ",
+    	"05 Paul Newbie          00090 00500.00   ",
+			"00                      00000 00000.00   "
+    };
+
+    initializeTest(testTransaction, "mergedTransaction.txt", "masterAccount.txt");
+
+    try {
+    	int userIndexChanged = backend.getUserAccounts().getIndex(00060);
+    	String balance = backend.getUserAccounts().getUser(userIndexChanged).getBalance();
+    	Assert.assertEquals("Test failed - Create", 00500.00, balance);
+    } catch() {
+    	System.out.println("Test Fail");
+    }
   }
 
   // In the processTransactions method, test existing account gets deleted
 	@Test
   public void testDelete() {
-    fail("Not yet implemented");  //not sure how to do the test for this
+    String[] testTransaction = new String[] {
+    	"10                      00000 00000.00 A ",
+    	"06 Martin Lee           00060 00000.00   ",
+			"00                      00000 00000.00   "
+    }
+
+    initializeTest(testTransaction, "mergedTransaction.txt", "masterAccount.txt");
+
+    try {
+    	int userIndexChanged = backend.getUserAccounts().getIndex(00060);
+    	String name = backend.getUserAccounts().getUser(userIndexChanged).getAccountName();
+    	Assert.assertEquals("Test failed - Delete", -1, userIndexChanged);
+    } catch() {
+    	System.out.println("Test Fail");
+    }
   }
 
   // In the processTransactions method, test Account Status is changed to Disabled
 	@Test
-  public void testDisable() {       //not sure how to do the test for this
-    fail("Not yet implemented");
+  public void testDisable() {       
+    String[] testTransaction = new String[] {
+    	"10                      00000 00000.00 A ",
+    	"07 Mark Stone           00060 00000.00   ",
+			"00                      00000 00000.00   "
+    };
+
+    initializeTest(testTransaction, "mergedTransaction.txt", "masterAccount.txt");
+
+    try {
+    	int userIndexChanged = backend.getUserAccounts().getIndex(00010);
+    	String status = backend.getUserAccounts().getUser(userIndexChanged).getStatus();
+    	Assert.assertEquals("Test failed - Disable", "D", status);
+    } catch() {
+    	System.out.println("Test Fail");
+    }
   }
 
   // In the processTransactions method, test the Student account plan changes NonStudent
 	@Test
-  public void testChangePlanStudent() {  //not sure how to do the test for this
-    fail("Not yet implemented");
+  public void testChangePlanStudent() {  
+    String[] testTransaction = new String[] {
+    	"10                      00000 00000.00 A ",
+    	"08 Emily Wilson         00020 00000.00   ",
+			"00                      00000 00000.00   "
+    };
+
+    initializeTest(testTransaction, "mergedTransaction.txt", "masterAccount.txt");
+
+    try {
+    	int userIndexChanged = backend.getUserAccounts().getIndex(00020);
+    	String plan = backend.getUserAccounts().getUser(userIndexChanged).getPlan();
+    	Assert.assertEquals("Test failed - ChangePlanStudent", "N", plan);
+    } catch() {
+    	System.out.println("Test Fail");
+    }
   }
 
   // In the processTransactions method, test the NonStudent account plan changes to Student
 	@Test
-  public void testChangePlanNonStudent() { //up to here
-    fail("Not yet implemented");
+  public void testChangePlanNonStudent() { 
+    String[] testTransaction = new String[] {
+    	"10 Mark                 00000 00000.00 A ",
+    	"08 Mark Stone           00010 00000.00   ",
+			"00 Mark Stone           00000 00000.00   "
+    };
+
+    initializeTest(testTransaction, "mergedTransaction.txt", "masterAccount.txt");
+
+    try {
+    	int userIndexChanged = backend.getUserAccounts().getIndex(00060);
+    	String plan = backend.getUserAccounts().getUser(userIndexChanged).getPlan();
+    	Assert.assertEquals("Test failed - ChangePlanNonStudent", "S", plan);
+    } catch() {
+    	System.out.println("Test Fail");
+    }
   }
 
   // In the processTransactions method, test Account Status is changed to Enabled
