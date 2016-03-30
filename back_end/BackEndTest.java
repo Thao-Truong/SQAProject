@@ -5,34 +5,40 @@ import org.junit.Test;
 public class BackEndTest {
 	private BackEnd backend;
   
-  @Test
-  public void testWithdrawalStudent() {
-    BackEnd tester = new BackEnd("transaction_withdrawal", "currrent_accounts_withdrawal");
-    FileReader fr = new FileReader("master_accounts.txt");
-    BufferedReader br = new BufferedReader(fr);
-    String accountsLine = br.readLine();
-    assertEquals("Failure...amounts are not equal", "00060.00", accountsLine.substring(29, 37));
-    accountsLine = br.readLine();
-    assertEquals("Failure...amounts are not equal", "00500.00", accountsLine.substring(29, 37));
-  }
+  // @Test
+  // public void testWithdrawalStudent() {
+  //   BackEnd tester = new BackEnd("transaction_withdrawal", "currrent_accounts_withdrawal");
+  //   FileReader fr = new FileReader("master_accounts.txt");
+  //   BufferedReader br = new BufferedReader(fr);
+  //   String accountsLine = br.readLine();
+  //   assertEquals("Failure...amounts are not equal", "00060.00", accountsLine.substring(29, 37));
+  //   accountsLine = br.readLine();
+  //   assertEquals("Failure...amounts are not equal", "00500.00", accountsLine.substring(29, 37));
+  // }
 
   // 
-	@Test
-  public void testBackEndEmpty() {
-
-  }
-
-	@Test
-  public void testBackEnd() {
-      fail("Not yet implemented");
-  }
-
+	
 	@Test
   public void testWithdrawalStudent() {
-    fail("Not yet implemented");
+    String[] testTransaction = newString[] {
+    	"10 Emily Wilson         00000 00000.00 S ", 
+			"01 Emily Wilson         00020 00500.00   ",
+			"00 Emily Wilson         00000 00000.00   "
+    }
+
+    initializeTest(testTransaction);
+
+    try {
+    	int userIndexChanged = backend.getUserAccounts().getIndex(00010);
+    	String balance = backend.getUserAccounts().getUser(userIndexChanged).getBalance();
+    	Assert.assertEquals("Test failed - WithdrawalStudent", 00500.00, balance);
+    } catch() {
+    	System.out.println("Test Fail");
+    }
   }
 
 
+  // Tests statement coverage for Withdrawal, making sure to hit the statments with a nonstudent plan and balance > 0
 	@Test
   public void testWithdrawalNonStudent() {
     String[] testTransaction = newString[] {
