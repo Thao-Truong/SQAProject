@@ -16,8 +16,9 @@ public class BackEndTest {
   //   assertEquals("Failure...amounts are not equal", "00500.00", accountsLine.substring(29, 37));
   // }
 
-  // 
+ 
 	
+	// In the processTransactions method, test the account plan is NonStudent and has a balance < 0
 	@Test
   public void testWithdrawalStudent() {
     String[] testTransaction = new String[] {
@@ -38,7 +39,8 @@ public class BackEndTest {
   }
 
 
-  // Tests statement coverage for Withdrawal, making sure to hit the statments with a nonstudent plan and balance > 0
+  // Tests statement coverage for Withdrawal, making sure to hit the statments with a nonstudent plan and balance > 0, 
+  // which covers statements not reachable by previous test
 	@Test
   public void testWithdrawalNonStudent() {
     String[] testTransaction = new String[] {
@@ -59,6 +61,7 @@ public class BackEndTest {
   	
   }
 
+  // In the processTransactions method, test the account plan is Student and has a balance > 0. The transfer transaction has 2 transactions
 	@Test
   public void testTransferStudent() {
     String[] testTransaction = new String[] {
@@ -80,6 +83,7 @@ public class BackEndTest {
     	System.out.println("Test Fail");
     }
 
+  // In the processTransactions method, test the account plan is NonStudent and has a balance < 0. The transfer transaction has 2 transactions
 	@Test
   public void testTransferNonStudent() {
   String[] testTransaction = new String[] {
@@ -103,6 +107,7 @@ public class BackEndTest {
     } 
   }
 
+  // In the processTransactions method, test the account plan is Student and has a balance > 0
 	@Test
   public void testPaybillStudent() {
      String[] testTransaction = new String[] {
@@ -122,6 +127,7 @@ public class BackEndTest {
     }
   }
 
+  // In the processTransactions method, test the account plan is NonStudent and has a balance < 0
 	@Test
   public void testPaybillNonStudent() {
     String[] testTransaction = new String[] {
@@ -141,6 +147,7 @@ public class BackEndTest {
     }
   }
 
+  // In the processTransactions method, test, test the account plan is Student and has a balance > 0
 	@Test
   public void testDepositStudent() {
     String[] testTransaction = new String[] {
@@ -160,6 +167,7 @@ public class BackEndTest {
     }
   }
 
+  // In the processTransactions method, test the account plan is NonStudent and has a balance < 0
 	@Test
   public void testDepositNonStudent() {
     String[] testTransaction = new String[] {
@@ -179,32 +187,37 @@ public class BackEndTest {
     }
   }
 
+  // In the processTransactions method, test the created account plan is NonStudent and has a balance > 0
 	@Test
   public void testCreate() {   //not sure how to do the test for this, going home...will try at home...
     
   }
 
+  // In the processTransactions method, test existing account gets deleted
 	@Test
   public void testDelete() {
     fail("Not yet implemented");  //not sure how to do the test for this
   }
 
+  // In the processTransactions method, test Account Status is changed to Disabled
 	@Test
   public void testDisable() {       //not sure how to do the test for this
     fail("Not yet implemented");
   }
 
+  // In the processTransactions method, test the Student account plan changes NonStudent
 	@Test
   public void testChangePlanStudent() {  //not sure how to do the test for this
     fail("Not yet implemented");
   }
 
+  // In the processTransactions method, test the NonStudent account plan changes to Student
 	@Test
   public void testChangePlanNonStudent() { //up to here
     fail("Not yet implemented");
   }
 
-
+  // In the processTransactions method, test Account Status is changed to Enabled
 	@Test
   public void testEnable() {
     String[] testTransaction = new String[] {
@@ -224,6 +237,7 @@ public class BackEndTest {
     }
   }
 
+  // In the processTransactions method, test Session Kind is correctly set to Admin
 	@Test
   public void testLoginAdmin() {
     String[] testTransaction = new String[] {
@@ -242,6 +256,7 @@ public class BackEndTest {
     }
   }
 
+  // In the processTransactions method, test Session Kind is correctly set to Standard
 	@Test
   public void testLoginStandard() {
     String[] testTransaction = new String[] {
@@ -260,6 +275,7 @@ public class BackEndTest {
     }
   }
 	
+	// In the userAccounts method, test if line 418 in BackEnd.java evaluates to true
 	@Test
   public void testDecisionTrue() {
     String[] testTransaction = newString[] {
@@ -280,6 +296,7 @@ public class BackEndTest {
     }
   }
 
+   // In the userAccounts method, test if line 420 in BackEnd.java evaluates to false
   @Test
   public void testDecisionFalse() {
     String[] testTransaction = newString[] {
@@ -292,17 +309,14 @@ public class BackEndTest {
     initializeTest(testTransaction, "mergedTransaction.txt", "Account.txt");
 
     try {
-    	// int userIndexChanged = backend.getUserAccounts().getIndex(00010);
-    	// String balance = backend.getUserAccounts().getUser(userIndexChanged).getBalance();
-
     	UserAccounts userTest = backend.getUserAccounts();
-
     	Assert.assertTrue("Test failed - Test Decision False", userTest == null);
     } catch() {
     	System.out.println("Test Fail");
     }
   }
 
+  // In the processTransactions method, test Loop 47 in BackEnd.java execuates zero times
   @Test
   public void testLoopZero() {
     String[] testTransaction = newString[] {};
@@ -318,6 +332,7 @@ public class BackEndTest {
     }
   }
 
+  // In the processTransactions method, test Loop 47 in BackEnd.java executes one time
   @Test
   public void testLoopOne() {
     String[] testTransaction = newString[] {
@@ -335,6 +350,7 @@ public class BackEndTest {
     }
   }
 
+  // In the processTransactions method, test Loop 47 in BackEnd.java executes two times
   @Test
   public void testLoopTwo() {
     String[] testTransaction = newString[] {
@@ -353,6 +369,7 @@ public class BackEndTest {
     }
   }
 
+  // In the processTransactions method, test Loop 47 in BackEnd.java executes many times
   @Test
   public void testLoopMany() {
     String[] testTransaction = newString[] {
