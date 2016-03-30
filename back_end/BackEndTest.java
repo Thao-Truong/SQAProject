@@ -259,25 +259,6 @@ public class BackEndTest {
     	System.out.println("Test Fail");
     }
   }
-
-	// @Test
- //  public void testEndOfSession() {
- //    String[] testTransaction = new String[] {
- //    	"10 Emily Wilson         00000 00000.00 S ",
-	// 		"00 Emily Wilson         00000 00000.00   "
- //    }
-
- //    initializeTest(testTransaction);
-
- //    try {
- //    	int userIndexChanged = backend.getUserAccounts().getIndex(00010);
- //    	String balance = backend.getUserAccounts().getUser(userIndexChanged).getBalance();
- //    	Assert.assertEquals("Test failed - WithdrawalStudent", 00500.00, balance);
- //    } catch() {
- //    	System.out.println("Test Fail");
- //    }
- //  }
-
 	
 	@Test
   public void testDecisionTrue() {
@@ -409,9 +390,6 @@ public class BackEndTest {
     } catch (FileNotFoundException e) {
       e.printStackTrace();
     }
-    
     BackEnd = new Backend(transName, accName);
-
   }
-
 }
